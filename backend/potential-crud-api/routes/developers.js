@@ -37,7 +37,7 @@ router.get('/', async (req, res) => {
     try {
         const docs = await Developers.find(devQuery).skip(skip).limit(limit);
 
-        res.send(docs)
+        res.json(docs)
     } catch (err) {
         console.log(err);
         res.sendStatus(404);
