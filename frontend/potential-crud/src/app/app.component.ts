@@ -11,6 +11,11 @@ export class AppComponent implements OnInit {
   constructor(private service: DevelopersService) { }
 
   ngOnInit() {
+    this.devList();
+  }
+
+  devList() {
     this.service.devList();
   }
+
 }
