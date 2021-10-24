@@ -34,7 +34,7 @@
           <tbody>
             <tr *ngFor="let dev of developers">
               <td>{{dev.nome}}</td>
-              <td>{{dev.sexo}}</td>
+              <td>{{dev.sexo | genre}}</td>
               <td>{{dev.idade}}</td>
               <td>{{dev.hobby}}</td>
               <td>{{dev.datanascimento | date:'dd/MM/yyyy'}}</td>

@@ -5,12 +5,14 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { DeveloperModalComponent } from './components/modals/developer-modal/developer-modal.component';
 import { ConfirmModalComponent } from './components/modals/confirm-modal/confirm-modal.component';
+import { GenrePipe } from './pipes/genre.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     DeveloperModalComponent,
     ConfirmModalComponent,
+    GenrePipe,
   ],
   imports: [
     BrowserModule,
