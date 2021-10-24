@@ -12,4 +12,8 @@ export class DevelopersService {
   async devList() {
     return this.http.get<{ docs: IDeveloper[], qtd: number }>('/api/developers?limit=10').toPromise();
   }
+
+  async devDelete(devId: string) {
+    return this.http.delete(`/api/developers/${devId}`).toPromise();
+  }
 }

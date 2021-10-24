@@ -14,7 +14,7 @@ export class AppComponent implements OnInit {
 
   developers: IDeveloper[] = [];
 
-  constructor(private service: DevelopersService, private modalService: NgbModal) { }
+  constructor(private devService: DevelopersService, private modalService: NgbModal) { }
 
   ngOnInit() {
     this.devList();
@@ -22,7 +22,7 @@ export class AppComponent implements OnInit {
 
   async devList() {
     try {
-      let developers = await this.service.devList();
+      let developers = await this.devService.devList();
       this.developers = developers.docs;
     } catch (err) {
       console.error(err);
@@ -39,9 +39,10 @@ export class AppComponent implements OnInit {
 
     modalComp.title = "Atenção!";
     modalComp.message = "Deseja mesmo deletar o registro desse desenvolvedor?";
-    modalComp.confirm.subscribe(confirm => {
+    modalComp.confirm.subscribe(async confirm => {
       if (confirm) {
-
+        await this.devService.devDelete(devId);
+        this.devList();
       }
       modalRef.close();
     });
