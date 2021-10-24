@@ -17,19 +17,12 @@
             <div class="col-sm-6">
               <a class="btn btn-success"><i class="fa fa-plus-circle"></i>
                 <span>Adicionar</span></a>
-              <a class="btn btn-danger"><i class="fa fa-minus-circle"></i> <span>Deletar</span></a>
             </div>
           </div>
         </div>
         <table class="table table-striped table-hover">
           <thead>
             <tr>
-              <th>
-                <span class="custom-checkbox">
-                  <input type="checkbox" id="selectAll">
-                  <label for="selectAll"></label>
-                </span>
-              </th>
               <th>Nome</th>
               <th>Sexo</th>
               <th>Idade</th>
@@ -40,12 +33,6 @@
           </thead>
           <tbody>
             <tr *ngFor="let dev of developers">
-              <td>
-                <span class="custom-checkbox">
-                  <input type="checkbox" id="checkbox1">
-                  <label for="checkbox1"></label>
-                </span>
-              </td>
               <td>{{dev.nome}}</td>
               <td>{{dev.sexo}}</td>
               <td>{{dev.idade}}</td>
