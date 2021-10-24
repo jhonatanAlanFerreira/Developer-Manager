@@ -37,7 +37,7 @@
               <td>{{dev.sexo}}</td>
               <td>{{dev.idade}}</td>
               <td>{{dev.hobby}}</td>
-              <td>{{dev.datanascimento}}</td>
+              <td>{{dev.datanascimento | date:'dd/MM/yyyy'}}</td>
               <td class="action">
                 <a class="edit"><i class="fa fa-pencil" title="Editar um registro"></i></a>
                 <a class="delete" (click)="devDelete(dev._id)"><i class="fa fa-trash"
