@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DevelopersService } from './developers.service';
+import { IDeveloper } from './entities/IDeveloper';
 
 @Component({
   selector: 'app-root',
@@ -8,14 +9,21 @@ import { DevelopersService } from './developers.service';
 })
 export class AppComponent implements OnInit {
 
+  developers: IDeveloper[] = [];
+
   constructor(private service: DevelopersService) { }
 
   ngOnInit() {
     this.devList();
   }
 
-  devList() {
-    this.service.devList();
+  async devList() {
+    try {
+      let developers = await this.service.devList();
+      this.developers = developers.docs;
+    } catch (err) {
+      console.error(err);
+    }
   }
 
 }

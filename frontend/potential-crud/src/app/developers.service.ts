@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { IDeveloper } from './entities/IDeveloper';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,6 @@ export class DevelopersService {
   constructor(private http: HttpClient) { }
 
   async devList() {
-    let res = await this.http.get('/api/developers').toPromise();
-    console.log(res);
+    return this.http.get<{ docs: IDeveloper[], qtd: number }>('/api/developers?limit=10').toPromise();
   }
 }

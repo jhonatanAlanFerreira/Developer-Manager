@@ -12,13 +12,12 @@
         <div class="table-title">
           <div class="row">
             <div class="col-sm-6">
-              <h2>Manage <b>Employees</b></h2>
+              <h2>Gerenciar <b>Desenvolvedores</b></h2>
             </div>
             <div class="col-sm-6">
-              <a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i class="fa fa-plus-circle"></i>
-                <span>Add New Employee</span></a>
-              <a href="#deleteEmployeeModal" class="btn btn-danger" data-toggle="modal"><i
-                  class="fa fa-minus-circle"></i> <span>Delete</span></a>
+              <a class="btn btn-success"><i class="fa fa-plus-circle"></i>
+                <span>Adicionar</span></a>
+              <a class="btn btn-danger"><i class="fa fa-minus-circle"></i> <span>Deletar</span></a>
             </div>
           </div>
         </div>
@@ -31,30 +30,30 @@
                   <label for="selectAll"></label>
                 </span>
               </th>
-              <th>Name</th>
-              <th>Email</th>
-              <th>Address</th>
-              <th>Phone</th>
-              <th>Actions</th>
+              <th>Nome</th>
+              <th>Sexo</th>
+              <th>Idade</th>
+              <th>Hobby</th>
+              <th>Data de Nascimento</th>
+              <th>Ação</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
+            <tr *ngFor="let dev of developers">
               <td>
                 <span class="custom-checkbox">
-                  <input type="checkbox" id="checkbox1" name="options[]" value="1">
+                  <input type="checkbox" id="checkbox1">
                   <label for="checkbox1"></label>
                 </span>
               </td>
-              <td>Thomas Hardy</td>
-              <td>thomashardy@mail.com</td>
-              <td>89 Chiaroscuro Rd, Portland, USA</td>
-              <td>(171) 555-2222</td>
-              <td>
-                <a href="#editEmployeeModal" class="edit" data-toggle="modal"><i class="fa fa-pencil"
-                    data-toggle="tooltip" title="Edit"></i></a>
-                <a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="fa fa-trash"
-                    data-toggle="tooltip" title="Delete"></i></a>
+              <td>{{dev.nome}}</td>
+              <td>{{dev.sexo}}</td>
+              <td>{{dev.idade}}</td>
+              <td>{{dev.hobby}}</td>
+              <td>{{dev.datanascimento}}</td>
+              <td class="action">
+                <a class="edit"><i class="fa fa-pencil" title="Editar um registro"></i></a>
+                <a class="delete"><i class="fa fa-trash" title="Deletar um registro"></i></a>
               </td>
             </tr>
           </tbody>
