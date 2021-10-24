@@ -53,7 +53,8 @@
               <td>{{dev.datanascimento}}</td>
               <td class="action">
                 <a class="edit"><i class="fa fa-pencil" title="Editar um registro"></i></a>
-                <a class="delete"><i class="fa fa-trash" title="Deletar um registro"></i></a>
+                <a class="delete" (click)="devDelete(dev._id)"><i class="fa fa-trash"
+                    title="Deletar um registro"></i></a>
               </td>
             </tr>
           </tbody>

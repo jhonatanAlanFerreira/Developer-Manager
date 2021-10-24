@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ConfirmModalComponent } from './components/modals/confirm-modal/confirm-modal.component';
+import { DeveloperModalComponent } from './components/modals/developer-modal/developer-modal.component';
 import { DevelopersService } from './developers.service';
 import { IDeveloper } from './entities/IDeveloper';
 
@@ -11,7 +14,7 @@ export class AppComponent implements OnInit {
 
   developers: IDeveloper[] = [];
 
-  constructor(private service: DevelopersService) { }
+  constructor(private service: DevelopersService, private modalService: NgbModal) { }
 
   ngOnInit() {
     this.devList();
@@ -24,6 +27,24 @@ export class AppComponent implements OnInit {
     } catch (err) {
       console.error(err);
     }
+  }
+
+  openDevModal() {
+    let modalRef = this.modalService.open(DeveloperModalComponent);
+  }
+
+  devDelete(devId: string) {
+    let modalRef = this.modalService.open(ConfirmModalComponent);
+    let modalComp: ConfirmModalComponent = modalRef.componentInstance;
+
+    modalComp.title = "Atenção!";
+    modalComp.message = "Deseja mesmo deletar o registro desse desenvolvedor?";
+    modalComp.confirm.subscribe(confirm => {
+      if (confirm) {
+
+      }
+      modalRef.close();
+    });
   }
 
 }

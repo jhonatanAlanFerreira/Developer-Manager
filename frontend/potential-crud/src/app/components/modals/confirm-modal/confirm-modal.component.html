@@ -1,0 +1,13 @@
+<div class="box">
+  <div class="title">
+    <P>{{title}}</P>
+  </div>
+  <div class="body">
+    <p>{{message}}</p>
+
+    <div class="btn-action">
+      <button class="btn btn-danger" (click)="close()">Cancelar</button>
+      <button class="btn btn-success" (click)="confirm.emit(true)">Confirmar</button>
+    </div>
+  </div>
+</div>
