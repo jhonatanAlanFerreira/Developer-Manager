@@ -11,6 +11,7 @@ import { IDeveloper } from 'src/app/entities/IDeveloper';
 export class DeveloperModalComponent implements OnInit, AfterContentInit {
   @Output() save = new EventEmitter<IDeveloper>();
   @Output() viewInit = new EventEmitter<void>();
+  @Input() title = '';
   form: FormGroup;
   sendInvalidCheck = false;
 

@@ -1,4 +1,4 @@
-<app-modal title="Adicionando desenvolvedor">
+<app-modal [title]="title">
   <form [formGroup]="form">
     <label>*Nome</label>
     <input [class.input-invalid]="sendInvalidCheck && !form.controls.nome.valid" class="form-control" type="text"

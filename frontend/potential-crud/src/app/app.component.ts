@@ -33,6 +33,7 @@ export class AppComponent implements OnInit {
   devInsert() {
     let modalRef = this.modalService.open(DeveloperModalComponent, { size: 'lg', centered: true });
     let modalComp: DeveloperModalComponent = modalRef.componentInstance;
+    modalComp.title = 'Adicionando desenvolvedor';
 
     modalComp.save.subscribe(async (developer: IDeveloper) => {
       try {
@@ -68,8 +69,8 @@ export class AppComponent implements OnInit {
     let modalRef = this.modalService.open(DeveloperModalComponent, { size: 'lg', centered: true });
     let modalComp: DeveloperModalComponent = modalRef.componentInstance;
 
+    modalComp.title = 'Editando desenvolvedor';
     modalComp.viewInit.subscribe(_ => modalComp.setValue(developer));
-
     modalComp.save.subscribe(async (developerUpdated: IDeveloper) => {
       try {
         await this.devService.devEdit(developerUpdated, developer._id || '');
