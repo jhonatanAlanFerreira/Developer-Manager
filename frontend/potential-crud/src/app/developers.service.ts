@@ -17,11 +17,11 @@ export class DevelopersService {
     return this.http.delete(`/api/developers/${devId}`).toPromise();
   }
 
-  insertDev(developer: IDeveloper) {
+  devInsert(developer: IDeveloper) {
     return this.http.post('/api/developers', developer).toPromise();
   }
 
-  updateDev(developer: IDeveloper, id: string) {
+  devEdit(developer: IDeveloper, id: string) {
     return this.http.put(`/api/developers/${id}`, developer).toPromise();
   }
 
