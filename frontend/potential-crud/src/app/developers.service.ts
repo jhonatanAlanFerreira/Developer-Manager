@@ -20,4 +20,9 @@ export class DevelopersService {
   insertDev(developer: IDeveloper) {
     return this.http.post('/api/developers', developer).toPromise();
   }
+
+  updateDev(developer: IDeveloper, id: string) {
+    return this.http.put(`/api/developers/${id}`, developer).toPromise();
+  }
+
 }

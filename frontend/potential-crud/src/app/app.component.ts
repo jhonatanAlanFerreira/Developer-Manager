@@ -30,15 +30,13 @@ export class AppComponent implements OnInit {
     }
   }
 
-  openDevModal() {
+  devInsert() {
     let modalRef = this.modalService.open(DeveloperModalComponent, { size: 'lg', centered: true });
     let modalComp: DeveloperModalComponent = modalRef.componentInstance;
+
     modalComp.save.subscribe(async (developer: IDeveloper) => {
       try {
-        let { _id } = developer;
-        delete developer._id;
-
-        if (!_id) await this.devService.insertDev(developer);
+        await this.devService.insertDev(developer);
         this.devList();
       } catch (err) {
         console.error(err);
@@ -62,6 +60,23 @@ export class AppComponent implements OnInit {
           console.error(err);
           alert('Houve um problema na conexão com o servidor');
         }
+      }
+    });
+  }
+
+  devEdit(developer: IDeveloper) {
+    let modalRef = this.modalService.open(DeveloperModalComponent, { size: 'lg', centered: true });
+    let modalComp: DeveloperModalComponent = modalRef.componentInstance;
+
+    modalComp.viewInit.subscribe(_ => modalComp.setValue(developer));
+
+    modalComp.save.subscribe(async (developerUpdated: IDeveloper) => {
+      try {
+        await this.devService.updateDev(developerUpdated, developer._id || '');
+        this.devList();
+      } catch (err) {
+        console.error(err);
+        alert('Houve um problema na conexão com o servidor');
       }
     });
   }

@@ -35,7 +35,9 @@ router.get('/', async (req, res) => {
     const skip = limit && page ? (page - 1) * limit : 0;
 
     try {
-        const docs = await Developers.find(devQuery).skip(skip).limit(limit);
+        const docs = await Developers.find(devQuery, {
+            __v: 0
+        }).skip(skip).limit(limit);
         const qtd = await Developers.find(devQuery).count();
 
         const data = {
@@ -43,7 +45,7 @@ router.get('/', async (req, res) => {
             qtd
         };
 
-        res.json(data)
+        res.json(data);
     } catch (err) {
         console.log(err);
         res.sendStatus(404);
@@ -101,7 +103,8 @@ router.put('/:id', async (req, res) => {
             $set: developer
         });
 
-        res.sendStatus(200);
+        res.statusCode = 200;
+        res.send('');
     } catch (err) {
         console.error(err);
         res.sendStatus(400);
