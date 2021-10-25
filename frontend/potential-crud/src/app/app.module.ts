@@ -8,6 +8,7 @@ import { ConfirmModalComponent } from './components/modals/confirm-modal/confirm
 import { GenrePipe } from './pipes/genre.pipe';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ModalComponent } from './components/modals/modal/modal.component';
+import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { ModalComponent } from './components/modals/modal/modal.component';
     BrowserModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgbPaginationModule
   ],
   providers: [],
   bootstrap: [AppComponent]
