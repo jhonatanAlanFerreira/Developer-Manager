@@ -76,7 +76,8 @@ router.post('/', async (req, res) => {
 
     try {
         await developer.save();
-        res.sendStatus(201);
+        res.statusCode = 201;
+        res.send('');
     } catch (err) {
         console.log(err);
         res.sendStatus(404);

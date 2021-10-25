@@ -26,11 +26,25 @@ export class AppComponent implements OnInit {
       this.developers = developers.docs;
     } catch (err) {
       console.error(err);
+      alert('Houve um problema na conexão com o servidor');
     }
   }
 
   openDevModal() {
-    let modalRef = this.modalService.open(DeveloperModalComponent);
+    let modalRef = this.modalService.open(DeveloperModalComponent, { size: 'lg', centered: true });
+    let modalComp: DeveloperModalComponent = modalRef.componentInstance;
+    modalComp.save.subscribe(async (developer: IDeveloper) => {
+      try {
+        let { _id } = developer;
+        delete developer._id;
+
+        if (!_id) await this.devService.insertDev(developer);
+        this.devList();
+      } catch (err) {
+        console.error(err);
+        alert('Houve um problema na conexão com o servidor');
+      }
+    });
   }
 
   devDelete(devId: string) {
@@ -41,10 +55,14 @@ export class AppComponent implements OnInit {
     modalComp.message = "Deseja mesmo deletar o registro desse desenvolvedor?";
     modalComp.confirm.subscribe(async confirm => {
       if (confirm) {
-        await this.devService.devDelete(devId);
-        this.devList();
+        try {
+          await this.devService.devDelete(devId);
+          this.devList();
+        } catch (err) {
+          console.error(err);
+          alert('Houve um problema na conexão com o servidor');
+        }
       }
-      modalRef.close();
     });
   }
 

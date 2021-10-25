@@ -1,1 +1,27 @@
-<p>developer-modal works!</p>
+<app-modal title="Adicionando desenvolvedor">
+  <form [formGroup]="form">
+    <label>*Nome</label>
+    <input [class.input-invalid]="sendInvalidCheck && !form.controls.nome.valid" class="form-control" type="text"
+      formControlName="nome">
+    <label>*Sexo</label>
+    <select class="form-control" [class.input-invalid]="sendInvalidCheck && !form.controls.sexo.valid"
+      formControlName="sexo">
+      <option value="M">Masculino</option>
+      <option value="F">Feminino</option>
+    </select>
+    <label>*Idade</label>
+    <input type="number" class="form-control" [class.input-invalid]="sendInvalidCheck && !form.controls.idade.valid"
+      formControlName="idade">
+    <label>*Data de Nascimento</label>
+    <input type="date" class="form-control"
+      [class.input-invalid]="sendInvalidCheck && !form.controls.datanascimento.valid" formControlName="datanascimento">
+    <label>Hobby</label>
+    <input type="text" class="form-control" [class.input-invalid]="sendInvalidCheck && !form.controls.hobby.valid"
+      formControlName="hobby">
+  </form>
+
+  <div class="btn-action">
+    <button class="btn btn-danger" (click)="close()">Cancelar</button>
+    <button class="btn btn-success" (click)="sendSave()">Confirmar</button>
+  </div>
+</app-modal>

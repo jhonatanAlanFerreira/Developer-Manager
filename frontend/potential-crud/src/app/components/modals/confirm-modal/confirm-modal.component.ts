@@ -12,13 +12,18 @@ export class ConfirmModalComponent implements OnInit {
   @Input() title = '';
   @Input() message = '';
 
-  constructor(public activeModal: NgbActiveModal) { }
+  constructor(private activeModal: NgbActiveModal) { }
 
   ngOnInit(): void {
   }
 
   close() {
     this.activeModal.close();
+  }
+
+  sendConfirm() {
+    this.confirm.emit(true);
+    this.close();
   }
 
 }

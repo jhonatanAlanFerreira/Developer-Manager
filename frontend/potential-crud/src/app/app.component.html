@@ -15,7 +15,7 @@
               <h2>Gerenciar <b>Desenvolvedores</b></h2>
             </div>
             <div class="col-sm-6">
-              <a class="btn btn-success"><i class="fa fa-plus-circle"></i>
+              <a (click)="openDevModal()" class="btn btn-success"><i class="fa fa-plus-circle"></i>
                 <span>Adicionar</span></a>
             </div>
           </div>
@@ -40,7 +40,7 @@
               <td>{{dev.datanascimento | date:'dd/MM/yyyy'}}</td>
               <td class="action">
                 <a class="edit"><i class="fa fa-pencil" title="Editar um registro"></i></a>
-                <a class="delete" (click)="devDelete(dev._id)"><i class="fa fa-trash"
+                <a class="delete" (click)="devDelete(dev._id || '')"><i class="fa fa-trash"
                     title="Deletar um registro"></i></a>
               </td>
             </tr>

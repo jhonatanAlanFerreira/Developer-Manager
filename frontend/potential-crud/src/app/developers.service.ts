@@ -9,11 +9,15 @@ export class DevelopersService {
 
   constructor(private http: HttpClient) { }
 
-  async devList() {
+  devList() {
     return this.http.get<{ docs: IDeveloper[], qtd: number }>('/api/developers?limit=10').toPromise();
   }
 
-  async devDelete(devId: string) {
+  devDelete(devId: string) {
     return this.http.delete(`/api/developers/${devId}`).toPromise();
+  }
+
+  insertDev(developer: IDeveloper) {
+    return this.http.post('/api/developers', developer).toPromise();
   }
 }
