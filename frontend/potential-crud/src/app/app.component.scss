@@ -65,10 +65,6 @@ table.table tr td {
   text-align: center;
 }
 
-table.table tr th:first-child {
-  width: 60px;
-}
-
 table.table tr th:last-child {
   width: 100px;
 }
@@ -88,7 +84,6 @@ table.table th i {
 }
 
 table.table td:last-child i {
-  opacity: 0.9;
   font-size: 22px;
   margin: 0 5px;
 }

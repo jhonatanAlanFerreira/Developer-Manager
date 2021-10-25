@@ -6,7 +6,7 @@ const developersSchema = new mongoose.Schema({
     sexo: String,
     idade: Number,
     hobby: String,
-    datanascimento: Date
+    datanascimento: String
 
 }, {
     collection: 'developers'
