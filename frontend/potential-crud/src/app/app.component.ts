@@ -36,7 +36,7 @@ export class AppComponent implements OnInit {
 
     modalComp.save.subscribe(async (developer: IDeveloper) => {
       try {
-        await this.devService.insertDev(developer);
+        await this.devService.devInsert(developer);
         this.devList();
       } catch (err) {
         console.error(err);
@@ -72,7 +72,7 @@ export class AppComponent implements OnInit {
 
     modalComp.save.subscribe(async (developerUpdated: IDeveloper) => {
       try {
-        await this.devService.updateDev(developerUpdated, developer._id || '');
+        await this.devService.devEdit(developerUpdated, developer._id || '');
         this.devList();
       } catch (err) {
         console.error(err);
