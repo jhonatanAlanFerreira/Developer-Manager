@@ -3,7 +3,7 @@ body {
   font-size: 13px;
 }
 
-.table-responsive {
+.table-margin {
   margin: 20px 0;
 }
 
@@ -145,5 +145,14 @@ table thead{
 
 .pagination{
   display: flex;
-  justify-content: center;
+  justify-content: right;
+}
+
+.footer{
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  justify-content: space-between;
+  input{
+    min-width: 20rem;
+  }
 }

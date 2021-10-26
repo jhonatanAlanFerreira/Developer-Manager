@@ -7,7 +7,7 @@
 
 <body>
   <div class="box">
-    <div class="table-responsive">
+    <div class="table-margin">
       <div class="table-wrapper">
         <div class="table-title">
           <div class="row">
@@ -48,10 +48,15 @@
         </table>
       </div>
     </div>
-    <div class="pagination">
-      <ngb-pagination (pageChange)="devList($event)" [page]="page" [pageSize]="pageSize"
-        [collectionSize]="collectionSize" [maxSize]="5" [boundaryLinks]="true">
-      </ngb-pagination>
+    <div>
+      <div class="footer">
+        <input type="text" class="form-control" placeholder="Buscar nome">
+        <div class="pagination">
+          <ngb-pagination (pageChange)="devList($event)" [page]="page" [pageSize]="pageSize"
+            [collectionSize]="collectionSize" [maxSize]="5" [boundaryLinks]="true">
+          </ngb-pagination>
+        </div>
+      </div>
     </div>
   </div>
 </body>

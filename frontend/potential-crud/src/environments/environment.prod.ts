@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  PAGINATE_SIZE: 20
+  PAGINATE_SIZE: 10
 };
