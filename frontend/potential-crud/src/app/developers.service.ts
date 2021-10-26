@@ -10,8 +10,8 @@ export class DevelopersService {
 
   constructor(private http: HttpClient) { }
 
-  devList(page: number) {
-    return this.http.get<{ docs: IDeveloper[], qtd: number }>(`/api/developers?limit=${environment.PAGINATE_SIZE}&page=${page}`).toPromise();
+  devList(page: number, name: string) {
+    return this.http.get<{ docs: IDeveloper[], qtd: number }>(`/api/developers?limit=${environment.PAGINATE_SIZE}&page=${page}&nome=${name}`).toPromise();
   }
 
   devDelete(devId: string) {

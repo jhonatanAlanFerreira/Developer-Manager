@@ -16,6 +16,7 @@ export class AppComponent implements OnInit {
   developers: IDeveloper[] = [];
   page = 1;
   collectionSize = 0;
+  nameSearch = '';
 
   constructor(private devService: DevelopersService, private modalService: NgbModal) { }
 
@@ -27,7 +28,7 @@ export class AppComponent implements OnInit {
     this.page = page;
 
     try {
-      let developers = await this.devService.devList(page);
+      let developers = await this.devService.devList(page, this.nameSearch);
       this.developers = developers.docs;
       this.collectionSize = developers.qtd;
     } catch (err) {
