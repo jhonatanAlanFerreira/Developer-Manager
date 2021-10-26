@@ -23,6 +23,8 @@ body {
   min-width: 100%;
   margin: -20px -25px 10px;
   border-radius: 3px 3px 0 0;
+  position: sticky;
+  top: 0;
 }
 
 .table-title h2 {
@@ -116,6 +118,12 @@ table.table .avatar {
   border-radius: 50%;
   vertical-align: middle;
   margin-right: 10px;
+}
+
+table thead{
+  position: sticky;
+  top: 4rem;
+  background-color: white;
 }
 
 .box{
