@@ -1,4 +1,4 @@
-import { AfterContentInit, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { AfterContentInit, Component, EventEmitter, HostListener, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { IDeveloper } from 'src/app/entities/IDeveloper';
@@ -9,6 +9,11 @@ import { IDeveloper } from 'src/app/entities/IDeveloper';
   styleUrls: ['./developer-modal.component.scss']
 })
 export class DeveloperModalComponent implements OnInit, AfterContentInit {
+  @HostListener('window:keyup', ['$event'])
+  keyEvent(event: KeyboardEvent) {
+    if (event.key == 'Enter') this.sendSave();
+  }
+
   @Output() save = new EventEmitter<IDeveloper>();
   @Output() viewInit = new EventEmitter<void>();
   @Input() title = '';
