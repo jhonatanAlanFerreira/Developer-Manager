@@ -50,8 +50,8 @@
     </div>
     <div>
       <div class="footer">
-        <input (keyDown.Enter)="devList(1)" [(ngModel)]="nameSearch" type="text" class="form-control"
-          placeholder="Buscar nome">
+        <input (blur)="devList(1)" (keyDown.Enter)="devList(1)" [(ngModel)]="nameSearch" type="text"
+          class="form-control" placeholder="Buscar nome">
         <div class="pagination">
           <ngb-pagination (pageChange)="devList($event)" [page]="page" [pageSize]="pageSize"
             [collectionSize]="collectionSize" [maxSize]="5" [boundaryLinks]="true">
