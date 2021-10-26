@@ -13,6 +13,8 @@ import { IDeveloper } from './entities/IDeveloper';
 export class AppComponent implements OnInit {
 
   developers: IDeveloper[] = [];
+  page = 1;
+  collectionSize = 0;
 
   constructor(private devService: DevelopersService, private modalService: NgbModal) { }
 
@@ -22,8 +24,9 @@ export class AppComponent implements OnInit {
 
   async devList() {
     try {
-      let developers = await this.devService.devList();
+      let developers = await this.devService.devList(this.page);
       this.developers = developers.docs;
+      this.collectionSize = developers.qtd;
     } catch (err) {
       console.error(err);
       alert('Houve um problema na conexão com o servidor');
