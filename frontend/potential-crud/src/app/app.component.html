@@ -49,7 +49,9 @@
       </div>
     </div>
     <div class="pagination">
-      <ngb-pagination [page]="page" [pageSize]="10" [collectionSize]="collectionSize"></ngb-pagination>
+      <ngb-pagination (pageChange)="devList($event)" [page]="page" [pageSize]="pageSize"
+        [collectionSize]="collectionSize" [maxSize]="5" [boundaryLinks]="true">
+      </ngb-pagination>
     </div>
   </div>
 </body>

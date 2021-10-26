@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { environment } from 'src/environments/environment.prod';
 import { ConfirmModalComponent } from './components/modals/confirm-modal/confirm-modal.component';
 import { DeveloperModalComponent } from './components/modals/developer-modal/developer-modal.component';
 import { DevelopersService } from './developers.service';
@@ -19,12 +20,14 @@ export class AppComponent implements OnInit {
   constructor(private devService: DevelopersService, private modalService: NgbModal) { }
 
   ngOnInit() {
-    this.devList();
+    this.devList(this.page);
   }
 
-  async devList() {
+  async devList(page: number) {
+    this.page = page;
+
     try {
-      let developers = await this.devService.devList(this.page);
+      let developers = await this.devService.devList(page);
       this.developers = developers.docs;
       this.collectionSize = developers.qtd;
     } catch (err) {
@@ -41,7 +44,7 @@ export class AppComponent implements OnInit {
     modalComp.save.subscribe(async (developer: IDeveloper) => {
       try {
         await this.devService.devInsert(developer);
-        this.devList();
+        this.devList(this.page);
       } catch (err) {
         console.error(err);
         alert('Houve um problema na conexão com o servidor');
@@ -59,7 +62,7 @@ export class AppComponent implements OnInit {
       if (confirm) {
         try {
           await this.devService.devDelete(devId);
-          this.devList();
+          this.devList(this.page);
         } catch (err) {
           console.error(err);
           alert('Houve um problema na conexão com o servidor');
@@ -77,12 +80,16 @@ export class AppComponent implements OnInit {
     modalComp.save.subscribe(async (developerUpdated: IDeveloper) => {
       try {
         await this.devService.devEdit(developerUpdated, developer._id || '');
-        this.devList();
+        this.devList(this.page);
       } catch (err) {
         console.error(err);
         alert('Houve um problema na conexão com o servidor');
       }
     });
+  }
+
+  get pageSize() {
+    return environment.PAGINATE_SIZE;
   }
 
 }

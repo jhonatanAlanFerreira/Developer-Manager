@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { IDeveloper } from './entities/IDeveloper';
+import { environment } from '../environments/environment.prod'
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,7 @@ export class DevelopersService {
   constructor(private http: HttpClient) { }
 
   devList(page: number) {
-    return this.http.get<{ docs: IDeveloper[], qtd: number }>(`/api/developers?limit=10&page=${page}`).toPromise();
+    return this.http.get<{ docs: IDeveloper[], qtd: number }>(`/api/developers?limit=${environment.PAGINATE_SIZE}&page=${page}`).toPromise();
   }
 
   devDelete(devId: string) {
