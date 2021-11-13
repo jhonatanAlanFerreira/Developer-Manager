@@ -9,6 +9,7 @@ import { GenrePipe } from './pipes/genre.pipe';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ModalComponent } from './components/modals/modal/modal.component';
 import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
+import { TableSortDirective } from './directives/table-sort.directive';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
     ConfirmModalComponent,
     GenrePipe,
     ModalComponent,
+    TableSortDirective,
   ],
   imports: [
     BrowserModule,
