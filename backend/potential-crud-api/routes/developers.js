@@ -5,19 +5,19 @@ const db = require("../db");
 /* GET Retorna os desenvolvedores de acordo com o termo passado via querystring e paginação */
 router.get('/', async (req, res) => {
     const Developers = db.Mongoose.model('developers', db.DevelopersSchema, 'developers');
-    const {
+    let {
         nome,
         hobby,
         sexo,
         idade,
-        datanascimento
-    } = req.query;
-    let {
+        datanascimento,
         page,
-        limit
+        limit,
+        orderBy,
+        direction
     } = req.query;
 
-    var devQuery = {
+    let devQuery = {
         nome: {
             $regex: nome || '',
             $options: 'i'
@@ -27,6 +27,7 @@ router.get('/', async (req, res) => {
             $options: 'i'
         }
     };
+
     if (sexo) devQuery.sexo = sexo;
     if (idade) devQuery.idade = idade;
     if (datanascimento) devQuery.datanascimento = datanascimento;
@@ -37,7 +38,10 @@ router.get('/', async (req, res) => {
     try {
         const docs = await Developers.find(devQuery, {
             __v: 0
+        }).sort({
+            [orderBy]: direction == 'asc' ? 1 : -1
         }).skip(skip).limit(limit);
+
         const qtd = await Developers.find(devQuery).count();
 
         const data = {
