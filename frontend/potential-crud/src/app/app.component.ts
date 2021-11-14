@@ -5,6 +5,7 @@ import { ConfirmModalComponent } from './components/modals/confirm-modal/confirm
 import { DeveloperModalComponent } from './components/modals/developer-modal/developer-modal.component';
 import { DevelopersService } from './developers.service';
 import { IDeveloper } from './entities/IDeveloper';
+import { ISort } from './interfaces/ISort';
 
 @Component({
   selector: 'app-root',
@@ -17,6 +18,7 @@ export class AppComponent implements OnInit {
   page = 1;
   collectionSize = 0;
   nameSearch = '';
+  sort: ISort | null = null;
 
   constructor(private devService: DevelopersService, private modalService: NgbModal) { }
 
@@ -28,7 +30,7 @@ export class AppComponent implements OnInit {
     this.page = page;
 
     try {
-      let developers = await this.devService.devList(page, this.nameSearch);
+      let developers = await this.devService.devList(page, this.nameSearch, this.sort);
       this.developers = developers.docs;
       this.collectionSize = developers.qtd;
     } catch (err) {
@@ -87,6 +89,11 @@ export class AppComponent implements OnInit {
         alert('Houve um problema na conexão com o servidor');
       }
     });
+  }
+
+  sorted(e: ISort) {
+    this.sort = e;
+    this.devList(1);
   }
 
   get pageSize() {

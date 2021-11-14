@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { IDeveloper } from './entities/IDeveloper';
 import { environment } from '../environments/environment.prod'
+import { ISort } from './interfaces/ISort';
 
 @Injectable({
   providedIn: 'root'
@@ -10,8 +11,8 @@ export class DevelopersService {
 
   constructor(private http: HttpClient) { }
 
-  devList(page: number, name: string) {
-    return this.http.get<{ docs: IDeveloper[], qtd: number }>(`/api/developers?limit=${environment.PAGINATE_SIZE}&page=${page}&nome=${name}`).toPromise();
+  devList(page: number, name: string, sort: ISort | null) {
+    return this.http.get<{ docs: IDeveloper[], qtd: number }>(`/api/developers?limit=${environment.PAGINATE_SIZE}&page=${page}&nome=${name}${sort ? `&orderBy=${sort.column}&direction=${sort.direction}` : ''}`).toPromise();
   }
 
   devDelete(devId: string) {

@@ -1,9 +1,13 @@
-import { Directive, ElementRef, OnInit } from '@angular/core';
+import { Directive, ElementRef, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ISort } from '../interfaces/ISort';
 
 @Directive({
   selector: '[appTableSort]'
 })
 export class TableSortDirective implements OnInit {
+  @Output() sorted = new EventEmitter<ISort>();
+  @Input() columns: string[];
+
   ascSort = false;
   iSorts: HTMLElement[] = [];
   lastSortId = 0;
@@ -24,6 +28,7 @@ export class TableSortDirective implements OnInit {
       iSort.classList.add('fa', 'fa-sort', 'btn');
       iSort.addEventListener('click', () => this.sort(i));
       iSort.id = `th-sort-${i}`;
+
       this.iSorts.push(iSort);
 
       ths[i].append(iSort);
@@ -49,6 +54,9 @@ export class TableSortDirective implements OnInit {
       }
 
     });
+
+    let sort: ISort = { column: this.columns[id], direction: this.ascSort ? 'asc' : 'des' };
+    this.sorted.emit(sort);
   }
 
 }
