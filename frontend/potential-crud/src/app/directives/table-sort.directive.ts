@@ -6,7 +6,7 @@ import { ISort } from '../interfaces/ISort';
 })
 export class TableSortDirective implements OnInit {
   @Output() sorted = new EventEmitter<ISort>();
-  @Input() columns: string[];
+  @Input() columns: (string | null)[];
 
   ascSort = false;
   iSorts: HTMLElement[] = [];
@@ -23,6 +23,7 @@ export class TableSortDirective implements OnInit {
     let ths = table.getElementsByTagName('th');
 
     for (let i = 0; i < ths.length; i++) {
+      if (!this.columns[i]) continue;
       let iSort = document.createElement('i');
 
       iSort.classList.add('fa', 'fa-sort', 'btn');

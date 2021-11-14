@@ -1,4 +1,4 @@
 export interface ISort {
-  column: string;
+  column: string | null;
   direction: 'asc' | 'des';
 }
