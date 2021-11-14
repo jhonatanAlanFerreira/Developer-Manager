@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost:27017/developers');
+mongoose.connect('mongodb://mongo:27017/developers');
 
 const developersSchema = new mongoose.Schema({
     nome: String,
