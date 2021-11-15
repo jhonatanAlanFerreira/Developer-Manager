@@ -7,6 +7,6 @@ Um crud para gerenciar cadastros de desenvolvedores feito com Angular no fronten
 
 ### Features:
 -Busca pelo nome do desenvolvedor.
-<br>-Ordenação pelo nome da coluna.
+<br>-Ordenação pelo nome da coluna asc e desc.
 <br>-Paginação.
 <br>-Responsividade.
