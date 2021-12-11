@@ -1,7 +1,7 @@
 version: "3"
 services:
   app:
-    container_name: potential-crud
+    container_name: developer-manager
     build: .
     ports:
       - "80:3000"
