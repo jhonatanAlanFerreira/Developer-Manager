@@ -1,11 +1,18 @@
 # Developer Manager
 
+Demonstração online http://jhonferreira.eastus.cloudapp.azure.com/developer-manager
+
 <kbd>
   <img src="https://raw.githubusercontent.com/jhonatanAlanFerreira/potential-crud/master/screenshot/screenshot.png" alt="Screen Shot">
   <br>
 </kbd>
 
 > Um crud para gerenciar cadastros de desenvolvedores feito com Angular no frontend, Node no backend, Mongo como banco de dados e docker na criação do container.
+
+### Ajustes e melhorias
+
+* Para telas pequenas a largura essa fixa, a responsividade será melhorada
+* Será feito um login simples para listar registros apenas do usuário logado
 
 ## 💻 Pré-requisitos
 
