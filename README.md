@@ -29,5 +29,3 @@ Execute o comando `docker-compose up -d` na pasta do projeto, vai demorar alguns
 * Ordenação pelo nome da coluna asc e desc.
 
 * Paginação.
-
-* Responsividade.
