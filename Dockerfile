@@ -4,7 +4,7 @@ copy . .
 
 workdir /frontend/potential-crud
 
-run npm install --no-package-lock && npm run build
+run npm install --no-package-lock && npm run build:dev
 
 workdir /backend/potential-crud-api
 
