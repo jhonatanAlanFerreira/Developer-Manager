@@ -14,7 +14,7 @@ Necessário ter Docker instalado.
 
 ## ☕ Usando Developer Manager
 
-Execute o comando `docker-compose up -d` na pasta do projeto, vai demorar alguns minutos até o docker gerar o container, quando terminar o projeto vai estar executando na porta 80, é só acessar http://localhost.
+Execute o comando `docker-compose up -d` na pasta do projeto, vai demorar alguns minutos até o docker gerar o container, quando terminar o projeto vai estar executando na porta 3000, é só acessar http://localhost:3000.
 
 ## 🌟 Features 
 * Busca pelo nome do desenvolvedor.
