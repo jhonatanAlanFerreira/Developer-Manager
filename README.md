@@ -11,7 +11,6 @@ Demonstração online https://jhonatanferreira.me/developer-manager
 
 ### Ajustes e melhorias
 
-* Para telas pequenas a largura essa fixa, a responsividade será melhorada
 * Será feito um login simples para listar registros apenas do usuário logado
 
 ## 💻 Pré-requisitos
@@ -29,3 +28,5 @@ Execute o comando `docker-compose up -d` na pasta do projeto, vai demorar alguns
 * Ordenação pelo nome da coluna asc e desc.
 
 * Paginação.
+
+* Responsividade
