@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { DeveloperModalComponent } from './components/modals/developer-modal/developer-modal.component';
@@ -10,6 +10,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ModalComponent } from './components/modals/modal/modal.component';
 import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 import { TableSortDirective } from './directives/table-sort.directive';
+import { RequestInterceptor } from './interceptor/request.interceptor';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,9 @@ import { TableSortDirective } from './directives/table-sort.directive';
     ReactiveFormsModule,
     NgbPaginationModule
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: RequestInterceptor, multi: true }
+  ]
 })
 export class AppModule { }

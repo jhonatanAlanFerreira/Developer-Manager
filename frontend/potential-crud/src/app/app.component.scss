@@ -156,3 +156,14 @@ table thead{
     min-width: 20rem;
   }
 }
+
+.loading-blur{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(2px);
+  z-index: 5;
+}

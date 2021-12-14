@@ -5,6 +5,7 @@ import { ConfirmModalComponent } from './components/modals/confirm-modal/confirm
 import { DeveloperModalComponent } from './components/modals/developer-modal/developer-modal.component';
 import { DevelopersService } from './developers.service';
 import { IDeveloper } from './entities/IDeveloper';
+import { RequestInterceptor } from './interceptor/request.interceptor';
 import { ISort } from './interfaces/ISort';
 
 @Component({
@@ -98,6 +99,10 @@ export class AppComponent implements OnInit {
 
   get pageSize() {
     return environment.PAGINATE_SIZE;
+  }
+
+  get httpLoading() {
+    return RequestInterceptor.loading;
   }
 
 }
