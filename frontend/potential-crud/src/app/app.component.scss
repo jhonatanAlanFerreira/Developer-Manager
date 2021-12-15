@@ -4,7 +4,7 @@ body {
 }
 
 .table-margin {
-  margin: 20px 0;
+  margin: 7px 0;
 }
 
 .table-wrapper {
@@ -29,6 +29,7 @@ body {
 .table-title h2 {
   margin: 5px 0 0;
   font-size: 24px;
+  place-self: center;
 }
 
 .table-title .btn-group {
@@ -125,7 +126,7 @@ table thead{
 }
 
 .box{
-  padding: 0 20px;
+  padding: 0 7px;
   display: flex;
   flex-direction: column;
   height: 100vh;
@@ -170,4 +171,28 @@ table thead{
   justify-content: center;
   backdrop-filter: blur(2px);
   z-index: 5;
+}
+
+@media only screen and (max-width: 490px){
+  .btn-small{
+    height: 1.5rem;
+    font-size: 12px !important;
+    display: flex;
+    align-items: center;
+    i{
+      font-size: 12px !important;
+    }
+  }
+  
+  .title-small{
+    font-size: 14px !important;
+  }
+  
+  .table-title-small{
+    padding: 8px 23px;
+  }
+
+  table thead{
+    top: 0;
+  }
 }
