@@ -6,13 +6,20 @@ const developersSchema = new mongoose.Schema({
     sexo: String,
     idade: Number,
     hobby: String,
-    datanascimento: String
-
+    datanascimento: String,
+    nivel: Number
 }, {
     collection: 'developers'
 });
 
+const levelsSchema = new mongoose.Schema({
+    nivel: String
+}, {
+    collation: 'levels'
+});
+
 module.exports = {
     Mongoose: mongoose,
-    DevelopersSchema: developersSchema
+    DevelopersSchema: developersSchema,
+
 }
