@@ -4,5 +4,6 @@ export interface IDeveloper {
   sexo: string,
   idade: number,
   hobby: string,
-  datanascimento: Date
+  datanascimento: Date,
+  nivel: String
 }

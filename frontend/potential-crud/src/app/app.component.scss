@@ -152,8 +152,9 @@ table thead{
   justify-content: space-between;
   flex-wrap: wrap;
   row-gap: 1rem;
+  overflow: auto;
   input{
-    width: 25rem;
+    max-width: 25rem;
   }
 }
 
@@ -173,6 +174,13 @@ table thead{
   z-index: 5;
 }
 
+.menu-icon-bar{
+  float: left;
+  margin-right: 8px;
+  align-self: center;
+  font-size: 24px;
+}
+
 @media only screen and (max-width: 490px){
   .btn-small{
     height: 1.5rem;
@@ -188,6 +196,10 @@ table thead{
     font-size: 14px !important;
   }
   
+  .menu-icon-bar{
+    font-size: 14px;
+  }
+
   .table-title-small{
     padding: 8px 23px;
   }
