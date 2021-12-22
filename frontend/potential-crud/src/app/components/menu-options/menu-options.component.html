@@ -1,6 +1,6 @@
-<div class="menu-options">
+<div [class.hidden]="!service.sideBarOpen" class="menu-options">
     <div>
-        <i class="fa fa-angle-double-left"></i>
+        <i (click)="service.sideBarOpen = false" class="fa fa-times-circle"></i>
         <br>
         <p>Desenvolvedores</p>
         <p>Níveis</p>

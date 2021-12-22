@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TitleBarService } from 'src/app/services/title-bars/title-bar.service';
 
 @Component({
   selector: 'app-menu-options',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MenuOptionsComponent implements OnInit {
 
-  constructor() { }
+  constructor(public service: TitleBarService) { }
 
   ngOnInit(): void {
   }

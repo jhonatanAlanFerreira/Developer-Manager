@@ -6,8 +6,10 @@
     min-height: 99%;
     box-shadow: 1px 10px 10px black;
     border-radius: 0 15px 0 0;
-    width: 0;
     overflow: hidden;
+    visibility: visible;
+    opacity: 1;
+    transition-duration: 0.5s;
     div {
         display: flex;
         flex-direction: column;
@@ -29,4 +31,10 @@
             cursor: pointer;
         }
     }
+}
+
+.hidden{
+    visibility: hidden;
+    opacity: 0;
+    transition-duration: 0.5s;
 }

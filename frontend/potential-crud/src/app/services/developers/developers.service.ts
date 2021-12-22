@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { IDeveloper } from 'src/app/entities/IDeveloper';
+import { ISort } from 'src/app/interfaces/ISort';
 import { environment } from 'src/environments/environment';
-import { IDeveloper } from '../entities/IDeveloper';
-import { ISort } from '../interfaces/ISort';
 
 const APP_URL = environment.APP_URL;
 

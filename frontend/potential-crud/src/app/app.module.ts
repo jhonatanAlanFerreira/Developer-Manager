@@ -8,6 +8,7 @@ import { AppRoutingModule } from './rotes/AppRoutingModule';
 import { RouterModule } from '@angular/router';
 import { MenuOptionsComponent } from './components/menu-options/menu-options.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { TitleBarService } from './services/title-bars/title-bar.service';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   ],
   bootstrap: [AppComponent],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: RequestInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: RequestInterceptor, multi: true },
+    TitleBarService
   ]
 })
 export class AppModule { }

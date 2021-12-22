@@ -1,4 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { TitleBarService } from 'src/app/services/title-bars/title-bar.service';
 
 @Component({
   selector: 'app-title-bar',
@@ -8,7 +9,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 export class TitleBarComponent implements OnInit {
   @Output() addClicked = new EventEmitter<void>();
 
-  constructor() { }
+  constructor(public service: TitleBarService) { }
 
   ngOnInit(): void {
   }
