@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { TitleBarService } from 'src/app/services/title-bars/title-bar.service';
 
 @Component({
@@ -8,6 +8,7 @@ import { TitleBarService } from 'src/app/services/title-bars/title-bar.service';
 })
 export class TitleBarComponent implements OnInit {
   @Output() addClicked = new EventEmitter<void>();
+  @Input() titleEntity = '';
 
   constructor(public service: TitleBarService) { }
 
