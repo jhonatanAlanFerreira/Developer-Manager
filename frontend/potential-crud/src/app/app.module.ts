@@ -6,10 +6,12 @@ import { AppComponent } from './app.component';
 import { RequestInterceptor } from './interceptor/request.interceptor';
 import { AppRoutingModule } from './rotes/AppRoutingModule';
 import { RouterModule } from '@angular/router';
+import { MenuOptionsComponent } from './components/menu-options/menu-options.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    MenuOptionsComponent
   ],
   imports: [
     AppRoutingModule,

@@ -1,0 +1,16 @@
+.menu-options {
+    background: #435d7d;
+    position: absolute;
+    z-index: 5;
+    margin: 7px 0 0 7px;
+    min-height: 99%;
+    div {
+        padding: 1rem;
+        p {
+            color: white;
+            font-size: 14pt;
+            text-decoration: underline;
+            word-break: break-all;
+        }
+    }
+}
