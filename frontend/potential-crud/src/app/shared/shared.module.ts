@@ -5,6 +5,7 @@ import { ModalComponent } from '../components/modals/modal/modal.component';
 import { TableSortDirective } from '../directives/table-sort.directive';
 import { GenrePipe } from '../pipes/genre.pipe';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { TitleBarComponent } from '../components/title-bar/title-bar.component';
 
 
 
@@ -13,7 +14,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ConfirmModalComponent,
     GenrePipe,
     ModalComponent,
-    TableSortDirective
+    TableSortDirective,
+    TitleBarComponent
   ],
   imports: [
     CommonModule,
@@ -26,7 +28,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ModalComponent,
     TableSortDirective,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    TitleBarComponent,
   ]
 })
 export class SharedModule { }

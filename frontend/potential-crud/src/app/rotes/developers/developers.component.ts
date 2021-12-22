@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ConfirmModalComponent } from 'src/app/components/modals/confirm-modal/confirm-modal.component';
 import { DeveloperModalComponent } from 'src/app/components/modals/developer-modal/developer-modal.component';
-import { DevelopersService } from 'src/app/developers.service';
 import { IDeveloper } from 'src/app/entities/IDeveloper';
 import { RequestInterceptor } from 'src/app/interceptor/request.interceptor';
 import { ISort } from 'src/app/interfaces/ISort';
+import { DevelopersService } from 'src/app/services/developers.service';
 import { environment } from 'src/environments/environment';
 
 @Component({

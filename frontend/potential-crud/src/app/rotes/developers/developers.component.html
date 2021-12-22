@@ -17,14 +17,7 @@
       <div class="table-margin">
         <div class="table-wrapper">
           <div class="table-title table-title-small">
-            <div class="row title-bar">
-                <i class="fa fa-bars menu-icon-bar"></i>
-                <h2 class="m-0 title-small">Gerenciar <b>Desenvolvedores</b></h2>
-              <div>
-                <a (click)="devInsert()" class="btn btn-success btn-small"><i class="fa fa-plus-circle"></i>
-                  <span>Adicionar</span></a>
-              </div>
-            </div>
+            <app-title-bar (addClicked)="devInsert()"></app-title-bar>
           </div>
           <table appTableSort [columns]="['nome', 'sexo', 'idade', 'hobby', 'datanascimento', 'nivel']"
             (sorted)="sorted($event)" class="table table-striped table-hover">

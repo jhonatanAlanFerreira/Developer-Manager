@@ -7,6 +7,7 @@ import { RequestInterceptor } from './interceptor/request.interceptor';
 import { AppRoutingModule } from './rotes/AppRoutingModule';
 import { RouterModule } from '@angular/router';
 import { MenuOptionsComponent } from './components/menu-options/menu-options.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,8 @@ import { MenuOptionsComponent } from './components/menu-options/menu-options.com
     AppRoutingModule,
     BrowserModule,
     HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
     RouterModule
   ],
   bootstrap: [AppComponent],
