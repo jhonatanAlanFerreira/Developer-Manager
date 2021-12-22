@@ -27,13 +27,17 @@
             margin: 0;
             border-top: 1px solid grey;
             border-bottom: 1px solid grey;
-            padding: 0.5rem;
+            padding: 1rem;
             cursor: pointer;
+            display: flex;
+            i {
+                margin: 0 1rem 0 0;
+            }
         }
     }
 }
 
-.hidden{
+.hidden {
     visibility: hidden;
     opacity: 0;
     transition-duration: 0.5s;
