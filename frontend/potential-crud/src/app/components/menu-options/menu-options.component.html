@@ -2,7 +2,7 @@
     <div>
         <i (click)="service.sideBarOpen = false" class="fa fa-times-circle"></i>
         <br>
-        <p><i class="fa fa-address-card"></i>Desenvolvedores</p>
-        <p><i class="fa fa-line-chart"></i>Níveis</p>
+        <p (click)="service.sideBarOpen = false" routerLink="developers"><i class="fa fa-address-card"></i>Desenvolvedores</p>
+        <p (click)="service.sideBarOpen = false" routerLink='levels'><i class="fa fa-line-chart"></i>Níveis</p>
     </div>
 </div>
