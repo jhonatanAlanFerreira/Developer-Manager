@@ -1,0 +1,13 @@
+<app-modal [title]="title">
+    <form [formGroup]="form">
+      <label>*Nível</label>
+      <input [class.input-invalid]="sendInvalidCheck && !form.controls.nivel.valid" class="form-control" type="text"
+        formControlName="nivel">
+    </form>
+  
+    <div class="btn-action">
+      <button class="btn btn-danger" (click)="close()">Cancelar</button>
+      <button class="btn btn-success" (click)="sendSave()">Confirmar</button>
+    </div>
+  </app-modal>
+  

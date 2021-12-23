@@ -6,6 +6,7 @@ import { TableSortDirective } from '../directives/table-sort.directive';
 import { GenrePipe } from '../pipes/genre.pipe';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TitleBarComponent } from '../components/title-bar/title-bar.component';
+import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 
@@ -20,7 +21,8 @@ import { TitleBarComponent } from '../components/title-bar/title-bar.component';
   imports: [
     CommonModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgbPaginationModule
   ],
   exports: [
     ConfirmModalComponent,
@@ -30,6 +32,7 @@ import { TitleBarComponent } from '../components/title-bar/title-bar.component';
     FormsModule,
     ReactiveFormsModule,
     TitleBarComponent,
+    NgbPaginationModule
   ]
 })
 export class SharedModule { }

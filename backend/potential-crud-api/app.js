@@ -3,6 +3,7 @@ const express = require('express');
 const logger = require('morgan');
 
 const developersRouter = require('./routes/developers');
+const levelRouter = require('./routes/levels');
 const app = express();
 
 app.use(express.static("../../frontend/potential-crud/dist/potential-crud/"));
@@ -17,6 +18,7 @@ app.use(express.urlencoded({
 }));
 
 app.use('/api/developers', developersRouter);
+app.use('/api/levels', levelRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res) {

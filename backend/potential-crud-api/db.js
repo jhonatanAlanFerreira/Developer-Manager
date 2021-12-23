@@ -15,11 +15,11 @@ const developersSchema = new mongoose.Schema({
 const levelsSchema = new mongoose.Schema({
     nivel: String
 }, {
-    collation: 'levels'
+    colletion: 'levels'
 });
 
 module.exports = {
     Mongoose: mongoose,
     DevelopersSchema: developersSchema,
-
+    LevelsSchema: levelsSchema
 }
