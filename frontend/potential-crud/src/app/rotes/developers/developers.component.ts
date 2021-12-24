@@ -94,7 +94,7 @@ export class DevelopersComponent implements OnInit {
 
   sorted(e: ISort) {
     this.sort = e;
-    this.devList(1);
+    this.devList(this.page);
   }
 
   get pageSize() {

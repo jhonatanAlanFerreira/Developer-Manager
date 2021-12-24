@@ -104,7 +104,7 @@ export class LevelsComponent implements OnInit {
 
   sorted(e: ISort) {
     this.sort = e;
-    this.levelList(1);
+    this.levelList(this.page);
   }
 
   get pageSize() {

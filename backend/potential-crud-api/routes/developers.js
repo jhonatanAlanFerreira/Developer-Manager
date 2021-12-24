@@ -53,19 +53,19 @@ router.get('/', async (req, res) => {
                 as: "nivel",
                 pipeline: [
                     { $project: { "__v": 0 } },
-                    { $match: nivelSearch}
+                    { $match: nivelSearch }
                 ]
             },
         }, { $unwind: '$nivel' },
         { $match: devQuery },
-        { $sort: { [orderBy]: direction == 'asc' ? 1 : -1 } },
-        { $skip: skip }
+        { $sort: { [orderBy]: direction == 'asc' ? 1 : -1 } }
     ];
 
     let aggregateToCount = [...aggregate.slice(), ...[
         { $count: "qtd" }
     ]];
 
+    aggregate.push({ $skip: skip });
     if (limit) aggregate.push({ $limit: limit });
 
     try {
@@ -75,7 +75,7 @@ router.get('/', async (req, res) => {
 
         const data = {
             docs,
-            qtd:qtd[0]?.qtd
+            qtd: qtd[0]?.qtd
         };
 
         res.json(data);

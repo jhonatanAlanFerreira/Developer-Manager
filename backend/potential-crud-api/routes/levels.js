@@ -27,7 +27,7 @@ router.get('/', async (req, res) => {
 
         let aggregate = [
             { $addFields: { idString: { $toString: "$_id" } } },
-            {$match: levelQuery},
+            { $match: levelQuery },
             {
                 "$lookup": {
                     "from": "developers",
@@ -37,7 +37,8 @@ router.get('/', async (req, res) => {
                 }
             },
             { $addFields: { qtd: { $size: "$developers" } } },
-            { $sort: { [orderBy]: direction == 'asc' ? 1 : -1 } }
+            { $sort: { [orderBy]: direction == 'asc' ? 1 : -1 } },
+            { $skip: skip }
         ];
 
         if (limit) aggregate.push({ $limit: limit });
