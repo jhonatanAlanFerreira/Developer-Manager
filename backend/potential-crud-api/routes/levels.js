@@ -7,7 +7,6 @@ router.get('/', async (req, res) => {
     const Levels = db.Mongoose.model('levels', db.LevelsSchema, 'levels');
     let {
         nivel,
-        qtd,
         page,
         limit,
         orderBy,
