@@ -32,6 +32,8 @@ router.get('/', async (req, res) => {
     if (idade) devQuery.idade = idade;
     if (datanascimento) devQuery.datanascimento = datanascimento;
 
+    if (orderBy == 'nivel') orderBy = 'nivel.nivel';
+
     limit = limit ? +limit : 0;
     const skip = limit && page ? (page - 1) * limit : 0;
 
