@@ -11,6 +11,7 @@ router.get('/', async (req, res) => {
         sexo,
         idade,
         datanascimento,
+        nivel,
         page,
         limit,
         orderBy,
@@ -28,36 +29,43 @@ router.get('/', async (req, res) => {
         }
     };
 
+    let nivelSearch = {};
+
     if (sexo) devQuery.sexo = sexo;
-    if (idade) devQuery.idade = idade;
+    if (idade) devQuery.idade = +idade;
     if (datanascimento) devQuery.datanascimento = datanascimento;
+    if (nivel) nivelSearch = { nivel };
 
     if (orderBy == 'nivel') orderBy = 'nivel.nivel';
 
     limit = limit ? +limit : 0;
     const skip = limit && page ? (page - 1) * limit : 0;
 
-    try {
-        const docs = await Developers.aggregate([
-            { $addFields: { nivelObjId: { $toObjectId: "$nivel" } } },
-            { $project: { __v: 0 } },
+    const aggregate = [
+        { $addFields: { nivelObjId: { $toObjectId: "$nivel" } } },
+        { $project: { __v: 0 } },
+        {
+            $lookup:
             {
-                $lookup:
-                {
-                    from: "levels",
-                    localField: "nivelObjId",
-                    foreignField: "_id",
-                    as: "nivel",
-                    pipeline: [
-                        { $project: { "__v": 0 } }
-                    ]
-                },
-            }, { $unwind: '$nivel' },
-            { $match: devQuery },
-            { $sort: { [orderBy]: direction == 'asc' ? 1 : -1 } },
-            { $skip: skip },
-            { $limit: limit }
-        ]);
+                from: "levels",
+                localField: "nivelObjId",
+                foreignField: "_id",
+                as: "nivel",
+                pipeline: [
+                    { $project: { "__v": 0 } },
+                    { $match: nivelSearch}
+                ]
+            },
+        }, { $unwind: '$nivel' },
+        { $match: devQuery },
+        { $sort: { [orderBy]: direction == 'asc' ? 1 : -1 } },
+        { $skip: skip }
+    ];
+
+    if (limit) aggregate.push({ $limit: limit });
+
+    try {
+        const docs = await Developers.aggregate(aggregate);
 
         const qtd = await Developers.find(devQuery).count();
 
