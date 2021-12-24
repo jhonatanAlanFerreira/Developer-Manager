@@ -2,6 +2,8 @@ import { AfterContentInit, Component, EventEmitter, HostListener, Input, OnInit,
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { IDeveloper } from 'src/app/entities/IDeveloper';
+import { ILevel } from 'src/app/entities/ILevel';
+import { LevelsService } from 'src/app/services/levels/levels.service';
 
 @Component({
   selector: 'app-developer-modal',
@@ -19,8 +21,10 @@ export class DeveloperModalComponent implements OnInit, AfterContentInit {
   @Input() title = '';
   form: FormGroup;
   sendInvalidCheck = false;
+  levels: ILevel[];
+  levelsLoading = false;
 
-  constructor(private fb: FormBuilder, private activeModal: NgbActiveModal) { }
+  constructor(private fb: FormBuilder, private activeModal: NgbActiveModal, private levelsService: LevelsService) { }
 
   ngOnInit(): void {
     this.form = this.fb.group({
@@ -28,8 +32,19 @@ export class DeveloperModalComponent implements OnInit, AfterContentInit {
       sexo: ['', Validators.required],
       idade: ['', [Validators.required, Validators.min(1), Validators.max(200)]],
       datanascimento: ['', Validators.required],
+      nivel: ['', Validators.required],
       hobby: ['']
     });
+
+    this.loadLevels();
+  }
+
+  async loadLevels() {
+    this.levelsLoading = true;
+
+    let levels = await this.levelsService.levelListAll();
+    this.levels = levels.docs;
+    this.levelsLoading = false;
   }
 
   ngAfterContentInit() {
@@ -56,7 +71,8 @@ export class DeveloperModalComponent implements OnInit, AfterContentInit {
       sexo: developer.sexo,
       idade: developer.idade,
       datanascimento: developer.datanascimento,
-      hobby: developer.hobby
+      hobby: developer.hobby,
+      nivel: developer.nivel._id
     });
   }
 

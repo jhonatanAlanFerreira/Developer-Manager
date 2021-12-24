@@ -18,6 +18,10 @@ export class LevelsService {
     return this.http.get<{ docs: ILevel[], qtd: number }>(`${APP_URL}/api/levels?limit=${environment.PAGINATE_SIZE}&page=${page}&nivel=${name}${sort ? `&orderBy=${sort.column}&direction=${sort.direction}` : ''}`).toPromise();
   }
 
+  levelListAll() {
+    return this.http.get<{ docs: ILevel[], qtd: number }>(`${APP_URL}/api/levels?orderBy=nivel&direction=asc`, {params: {noLoading:true} }).toPromise();
+  }
+
   levelDelete(levelId: string) {
     return this.http.delete(`${APP_URL}/api/levels/${levelId}`).toPromise();
   }

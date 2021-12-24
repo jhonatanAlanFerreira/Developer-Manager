@@ -7,7 +7,7 @@ const developersSchema = new mongoose.Schema({
     idade: Number,
     hobby: String,
     datanascimento: String,
-    nivel: Number
+    nivel: String
 }, {
     collection: 'developers'
 });

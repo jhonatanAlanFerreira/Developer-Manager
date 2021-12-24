@@ -36,11 +36,26 @@ router.get('/', async (req, res) => {
     const skip = limit && page ? (page - 1) * limit : 0;
 
     try {
-        const docs = await Developers.find(devQuery, {
-            __v: 0
-        }).sort({
-            [orderBy]: direction == 'asc' ? 1 : -1
-        }).skip(skip).limit(limit);
+        const docs = await Developers.aggregate([
+            { $addFields: { nivelObjId: { $toObjectId: "$nivel" } } },
+            { $project: { __v: 0 } },
+            {
+                $lookup:
+                {
+                    from: "levels",
+                    localField: "nivelObjId",
+                    foreignField: "_id",
+                    as: "nivel",
+                    pipeline: [
+                        { $project: { "__v": 0 } }
+                    ]
+                },
+            }, { $unwind: '$nivel' },
+            { $match: devQuery },
+            { $sort: { [orderBy]: direction == 'asc' ? 1 : -1 } },
+            { $skip: skip },
+            { $limit: limit }
+        ]);
 
         const qtd = await Developers.find(devQuery).count();
 

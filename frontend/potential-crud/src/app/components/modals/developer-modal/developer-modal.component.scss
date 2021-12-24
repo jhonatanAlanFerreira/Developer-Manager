@@ -1,10 +1,16 @@
-form{
+form {
   padding: 1rem;
   text-align: left;
-  input, select{
+  input,
+  select {
     margin-bottom: 1rem;
   }
-  label{
+  label {
     margin-bottom: 0;
   }
+}
+
+.levels-loading {
+  display: flex;
+  margin-bottom: 1rem;
 }

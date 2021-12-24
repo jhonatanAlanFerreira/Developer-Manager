@@ -19,7 +19,7 @@
           <div class="table-title table-title-small">
             <app-title-bar titleEntity="Desenvolvedores" (addClicked)="devInsert()"></app-title-bar>
           </div>
-          <table appTableSort [columns]="['nome', 'sexo', 'idade', 'hobby', 'datanascimento', 'nivel']"
+          <table appTableSort [columns]="['nome', 'sexo', 'idade', 'hobby', 'datanascimento']"
             (sorted)="sorted($event)" class="table table-striped table-hover">
             <thead>
               <tr>
@@ -39,7 +39,7 @@
                 <td>{{dev.idade}}</td>
                 <td>{{dev.hobby}}</td>
                 <td>{{dev.datanascimento | date:'dd/MM/yyyy'}}</td>
-                <td>{{dev.nivel}}</td>
+                <td>{{dev.nivel.nivel}}</td>
                 <td class="action">
                   <a class="edit" (click)="devEdit(dev)"><i class="fa fa-pencil" title="Editar um registro"></i></a>
                   <a class="delete" (click)="devDelete(dev._id || '')"><i class="fa fa-trash"

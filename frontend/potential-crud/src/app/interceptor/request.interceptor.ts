@@ -16,7 +16,8 @@ export class RequestInterceptor implements HttpInterceptor {
   constructor() {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    RequestInterceptor.loading = true;
+    let noLoading = request.params.get('noLoading');
+    RequestInterceptor.loading = !noLoading;
     
     return next.handle(request).pipe(
       map((event: HttpEvent<any>) => {
