@@ -67,9 +67,19 @@ export class LevelsComponent implements OnInit {
         try {
           await this.levelService.levelDelete(levelId);
           this.levelList(this.page);
-        } catch (err) {
+        } catch (err:any) {
           console.error(err);
-          alert('Houve um problema na conexão com o servidor');
+          if (err.error.devsQtd) {
+            let modalRef = this.modalService.open(ConfirmModalComponent);
+            let modalComp: ConfirmModalComponent = modalRef.componentInstance
+            let { devsQtd } = err.error;
+            modalComp.confirmOnly = true;
+            modalComp.backgroundColor = 'rgb(222 36 62)';
+            modalComp.confirmBtnText = 'ok';
+            modalComp.title = "Erro!";
+            modalComp.message = `Existe${devsQtd>1?'m':''} ${devsQtd} desenvolvedor${devsQtd>1?'es':''} nesse nível, portanto o nível não pode ser excluído!`;
+          }
+          else alert('Houve um problema na conexão com o servidor');
         }
       }
     });

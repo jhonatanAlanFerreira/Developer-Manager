@@ -108,9 +108,19 @@ router.put('/:id', async (req, res) => {
 /* DELETE Apaga o registro de um nível. */
 router.delete('/:id', async (req, res) => {
     const Levels = db.Mongoose.model('levels', db.LevelsSchema, 'levels');
+    const Developers = db.Mongoose.model('developers', db.DevelopersSchema, 'developers');
     const {
         id
     } = req.params;
+
+    const devsQtd = await Developers.find({ nivel: id }).count();
+
+    console.log(devsQtd);
+
+    if (devsQtd) {
+        res.statusCode = 403;
+        return res.json({devsQtd});
+    }
 
     try {
         await Levels.deleteOne({

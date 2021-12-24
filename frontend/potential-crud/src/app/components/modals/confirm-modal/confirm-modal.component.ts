@@ -11,6 +11,9 @@ export class ConfirmModalComponent implements OnInit {
 
   @Input() title = '';
   @Input() message = '';
+  @Input() confirmOnly = false;
+  @Input() confirmBtnText = 'Confirmar'
+  @Input() backgroundColor = '#435d7d';
 
   constructor(private activeModal: NgbActiveModal) { }
 

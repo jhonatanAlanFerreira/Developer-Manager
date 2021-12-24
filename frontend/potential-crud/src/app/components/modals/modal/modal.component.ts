@@ -7,6 +7,7 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class ModalComponent implements OnInit {
   @Input() title = '';
+  @Input() backgroundColor = '#435d7d';
 
   constructor() { }
 
