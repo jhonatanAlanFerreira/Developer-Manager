@@ -7,6 +7,7 @@ router.get('/', async (req, res) => {
     const Levels = db.Mongoose.model('levels', db.LevelsSchema, 'levels');
     let {
         nivel,
+        qtd,
         page,
         limit,
         orderBy,
@@ -24,11 +25,24 @@ router.get('/', async (req, res) => {
     const skip = limit && page ? (page - 1) * limit : 0;
 
     try {
-        const docs = await Levels.find(levelQuery, {
-            __v: 0
-        }).sort({
-            [orderBy]: direction == 'asc' ? 1 : -1
-        }).skip(skip).limit(limit);
+
+        let aggregate = [
+            { $addFields: { idString: { $toString: "$_id" } } },
+            {
+                "$lookup": {
+                    "from": "developers",
+                    "localField": "idString",
+                    "foreignField": "nivel",
+                    "as": "developers"
+                }
+            },
+            { $addFields: { qtd: { $size: "$developers" } } },
+            { $sort: { [orderBy]: direction == 'asc' ? 1 : -1 } }
+        ];
+
+        if (limit) aggregate.push({ $limit: limit });
+
+        const docs = await Levels.aggregate(aggregate);
 
         const qtd = await Levels.find(levelQuery).count();
 
@@ -43,7 +57,7 @@ router.get('/', async (req, res) => {
         res.sendStatus(404);
     }
 
-    
+
 });
 
 /* GET Retorna os dados de um nível. */
@@ -119,7 +133,7 @@ router.delete('/:id', async (req, res) => {
 
     if (devsQtd) {
         res.statusCode = 403;
-        return res.json({devsQtd});
+        return res.json({ devsQtd });
     }
 
     try {

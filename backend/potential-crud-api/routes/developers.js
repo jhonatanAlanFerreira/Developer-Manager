@@ -62,16 +62,20 @@ router.get('/', async (req, res) => {
         { $skip: skip }
     ];
 
+    let aggregateToCount = [...aggregate.slice(), ...[
+        { $count: "qtd" }
+    ]];
+
     if (limit) aggregate.push({ $limit: limit });
 
     try {
         const docs = await Developers.aggregate(aggregate);
 
-        const qtd = await Developers.find(devQuery).count();
+        const qtd = await Developers.aggregate(aggregateToCount);
 
         const data = {
             docs,
-            qtd
+            qtd:qtd[0].qtd
         };
 
         res.json(data);
