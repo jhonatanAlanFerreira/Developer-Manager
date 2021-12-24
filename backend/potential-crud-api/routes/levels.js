@@ -28,6 +28,7 @@ router.get('/', async (req, res) => {
 
         let aggregate = [
             { $addFields: { idString: { $toString: "$_id" } } },
+            {$match: levelQuery},
             {
                 "$lookup": {
                     "from": "developers",
