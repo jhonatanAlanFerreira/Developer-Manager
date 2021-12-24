@@ -75,7 +75,7 @@ router.get('/', async (req, res) => {
 
         const data = {
             docs,
-            qtd:qtd[0].qtd
+            qtd:qtd[0]?.qtd
         };
 
         res.json(data);
