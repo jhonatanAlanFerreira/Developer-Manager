@@ -1,15 +1,12 @@
-const createError = require('http-errors');
 const express = require('express');
 const logger = require('morgan');
 
 const developersRouter = require('./routes/developers');
 const levelRouter = require('./routes/levels');
+const viewRouter = require('./routes/view');
 const app = express();
 
 app.use(express.static("../../frontend/potential-crud/dist/potential-crud/"));
-app.get('/', (req, res) => {
-  res.sendFile("../../frontend/potential-crud/dist/potential-crud/index.html")
-});
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -19,6 +16,7 @@ app.use(express.urlencoded({
 
 app.use('/api/developers', developersRouter);
 app.use('/api/levels', levelRouter);
+app.use(viewRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res) {
