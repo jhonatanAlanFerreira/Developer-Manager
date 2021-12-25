@@ -9,6 +9,8 @@ import { RouterModule } from '@angular/router';
 import { MenuOptionsComponent } from './components/menu-options/menu-options.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TitleBarService } from './services/title-bars/title-bar.service';
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,13 @@ import { TitleBarService } from './services/title-bars/title-bar.service';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    RouterModule
+    RouterModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot({
+      positionClass: 'toast-top-center',
+      progressBar: true,
+      timeOut: 3000
+    })
   ],
   bootstrap: [AppComponent],
   providers: [

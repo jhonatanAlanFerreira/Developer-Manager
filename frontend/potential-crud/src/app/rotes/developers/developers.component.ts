@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ToastrService } from 'ngx-toastr';
 import { ConfirmModalComponent } from 'src/app/components/modals/confirm-modal/confirm-modal.component';
 import { DeveloperModalComponent } from 'src/app/components/modals/developer-modal/developer-modal.component';
 import { IDeveloper } from 'src/app/entities/IDeveloper';
@@ -21,7 +22,7 @@ export class DevelopersComponent implements OnInit {
   nameSearch = '';
   sort: ISort | null = null;
 
-  constructor(private devService: DevelopersService, private modalService: NgbModal) { }
+  constructor(private devService: DevelopersService, private modalService: NgbModal, private toastr: ToastrService) { }
 
   ngOnInit() {
     this.devList(this.page);
@@ -36,9 +37,9 @@ export class DevelopersComponent implements OnInit {
       this.collectionSize = developers.qtd;
     } catch (err) {
       console.error(err);
-      alert('Houve um problema na conexão com o servidor');
+      this.toastr.error('Houve um problema na conexão com o servidor');
     }
-  }
+  }     
 
   devInsert() {
     let modalRef = this.modalService.open(DeveloperModalComponent, { size: 'lg', centered: true });
@@ -49,9 +50,10 @@ export class DevelopersComponent implements OnInit {
       try {
         await this.devService.devInsert(developer);
         this.devList(this.page);
+        this.toastr.success("Registro inserido com sucesso!");
       } catch (err) {
         console.error(err);
-        alert('Houve um problema na conexão com o servidor');
+        this.toastr.error('Houve um problema na conexão com o servidor');
       }
     });
   }
@@ -67,9 +69,10 @@ export class DevelopersComponent implements OnInit {
         try {
           await this.devService.devDelete(devId);
           this.devList(this.page);
+          this.toastr.success("Registro excluído com sucesso!");
         } catch (err) {
           console.error(err);
-          alert('Houve um problema na conexão com o servidor');
+          this.toastr.error('Houve um problema na conexão com o servidor');
         }
       }
     });
@@ -85,9 +88,10 @@ export class DevelopersComponent implements OnInit {
       try {
         await this.devService.devEdit(developerUpdated, developer._id || '');
         this.devList(this.page);
+        this.toastr.success("Registro editado com sucesso!");
       } catch (err) {
         console.error(err);
-        alert('Houve um problema na conexão com o servidor');
+        this.toastr.error('Houve um problema na conexão com o servidor');
       }
     });
   }

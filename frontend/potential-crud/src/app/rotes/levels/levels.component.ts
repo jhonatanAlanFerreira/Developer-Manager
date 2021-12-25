@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ToastrService } from 'ngx-toastr';
 import { ConfirmModalComponent } from 'src/app/components/modals/confirm-modal/confirm-modal.component';
 import { LevelModalComponent } from 'src/app/components/modals/level-modal/level-modal.component';
 import { ILevel } from 'src/app/entities/ILevel';
@@ -21,7 +22,7 @@ export class LevelsComponent implements OnInit {
   nameSearch = '';
   sort: ISort | null = null;
 
-  constructor(private levelService: LevelsService, private modalService: NgbModal) { }
+  constructor(private levelService: LevelsService, private modalService: NgbModal, private toastr: ToastrService) { }
 
   ngOnInit() {
     this.levelList(this.page);
@@ -49,9 +50,10 @@ export class LevelsComponent implements OnInit {
       try {
         await this.levelService.levelInsert(level);
         this.levelList(this.page);
+        this.toastr.success("Registro inserido com sucesso!");
       } catch (err) {
         console.error(err);
-        alert('Houve um problema na conexão com o servidor');
+        this.toastr.error('Houve um problema na conexão com o servidor');
       }
     });
   }
@@ -67,19 +69,14 @@ export class LevelsComponent implements OnInit {
         try {
           await this.levelService.levelDelete(levelId);
           this.levelList(this.page);
+          this.toastr.success("Registro excluído com sucesso!");
         } catch (err:any) {
           console.error(err);
           if (err.error.devsQtd) {
-            let modalRef = this.modalService.open(ConfirmModalComponent);
-            let modalComp: ConfirmModalComponent = modalRef.componentInstance
             let { devsQtd } = err.error;
-            modalComp.confirmOnly = true;
-            modalComp.backgroundColor = 'rgb(222 36 62)';
-            modalComp.confirmBtnText = 'ok';
-            modalComp.title = "Erro!";
-            modalComp.message = `Existe${devsQtd>1?'m':''} ${devsQtd} desenvolvedor${devsQtd>1?'es':''} nesse nível, portanto o nível não pode ser excluído!`;
+            this.toastr.error(`Existe${devsQtd>1?'m':''} ${devsQtd} desenvolvedor${devsQtd>1?'es':''} nesse nível, portanto o nível não pode ser excluído!`);
           }
-          else alert('Houve um problema na conexão com o servidor');
+          else this.toastr.error('Houve um problema na conexão com o servidor');
         }
       }
     });
@@ -95,9 +92,10 @@ export class LevelsComponent implements OnInit {
       try {
         await this.levelService.levelEdit(levelUpdated, level._id || '');
         this.levelList(this.page);
+        this.toastr.success("Registro editado com sucesso!");
       } catch (err) {
         console.error(err);
-        alert('Houve um problema na conexão com o servidor');
+        this.toastr.error('Houve um problema na conexão com o servidor');
       }
     });
   }
