@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const db = require("../db");
+const mongoose = require('mongoose');
 
 /* GET Retorna os desenvolvedores de acordo com o termo passado via querystring e paginação */
 router.get('/', async (req, res) => {
@@ -88,15 +89,35 @@ router.get('/', async (req, res) => {
 /* GET Retorna os dados de um desenvolvedor. */
 router.get('/:id', async (req, res) => {
     const Developers = db.Mongoose.model('developers', db.DevelopersSchema, 'developers');
-    const {
+    let {
         id
     } = req.params;
 
-    try {
-        const developer = await Developers.find({
-            _id: Object(id)
-        });
+    id = mongoose.Types.ObjectId(id);
 
+    try {
+        const developer = await Developers.aggregate([
+            { $addFields: { nivelObjId: { $toObjectId: "$nivel" } } },
+            { $project: { __v: 0 } },
+            {
+                $lookup:
+                {
+                    from: "levels",
+                    localField: "nivelObjId",
+                    foreignField: "_id",
+                    as: "nivel",
+                    pipeline: [
+                        { $project: { "__v": 0 } }
+                    ]
+                }
+            },
+            {
+                $match: {
+                    _id: id
+                }
+            }
+        ]);
+ 
         res.send(developer);
     } catch (err) {
         console.log(err);
