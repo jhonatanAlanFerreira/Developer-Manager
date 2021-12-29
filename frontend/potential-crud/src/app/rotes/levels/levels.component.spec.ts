@@ -1,4 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ToastrModule } from 'ngx-toastr';
+import { LevelsService } from 'src/app/services/levels/levels.service';
 
 import { LevelsComponent } from './levels.component';
 
@@ -8,7 +10,11 @@ describe('LevelsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ LevelsComponent ]
+      declarations: [LevelsComponent],
+      imports: [ToastrModule.forRoot()],
+      providers: [{
+        provide: LevelsService, useClass: LevelsServiceStub
+      }]
     })
     .compileComponents();
   });
@@ -23,3 +29,5 @@ describe('LevelsComponent', () => {
     expect(component).toBeTruthy();
   });
 });
+
+class LevelsServiceStub{}
