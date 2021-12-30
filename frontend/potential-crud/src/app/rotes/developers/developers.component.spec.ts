@@ -1,5 +1,10 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormsModule } from '@angular/forms';
+import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrModule } from 'ngx-toastr';
+import { TitleBarComponent } from 'src/app/components/title-bar/title-bar.component';
+import { TableSortDirective } from 'src/app/directives/table-sort.directive';
+import { ISort } from 'src/app/interfaces/ISort';
 import { DevelopersService } from 'src/app/services/developers/developers.service';
 
 import { DevelopersComponent } from './developers.component';
@@ -10,13 +15,13 @@ describe('DevelopersComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [DevelopersComponent],
-      imports:[[ToastrModule.forRoot()]],
+      declarations: [DevelopersComponent, TitleBarComponent, TableSortDirective],
+      imports: [[ToastrModule.forRoot()], NgbPaginationModule, FormsModule],
       providers: [{
         provide: DevelopersService, useClass: DevelopersServiceStub
       }]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {
@@ -30,4 +35,8 @@ describe('DevelopersComponent', () => {
   });
 });
 
-class DevelopersServiceStub{}
+class DevelopersServiceStub {
+  devList(page: number, name: string, sort: ISort | null) {
+    return [];
+  }
+}

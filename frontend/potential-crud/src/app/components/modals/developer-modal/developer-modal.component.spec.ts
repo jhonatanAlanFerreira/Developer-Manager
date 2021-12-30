@@ -1,7 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { LevelsService } from 'src/app/services/levels/levels.service';
+import { ModalComponent } from '../modal/modal.component';
 
 import { DeveloperModalComponent } from './developer-modal.component';
 
@@ -11,12 +12,13 @@ describe('DeveloperModalComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      imports: [FormsModule, ReactiveFormsModule],
       providers: [FormBuilder, NgbActiveModal,
-      {provide: LevelsService, useClass: LevelsServiceStub}
+        { provide: LevelsService, useClass: LevelsServiceStub }
       ],
-      declarations: [ DeveloperModalComponent ]
+      declarations: [DeveloperModalComponent, ModalComponent]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {
@@ -30,4 +32,4 @@ describe('DeveloperModalComponent', () => {
   });
 });
 
-class LevelsServiceStub{}
+class LevelsServiceStub { }
