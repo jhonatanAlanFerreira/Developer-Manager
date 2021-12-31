@@ -1,16 +1,17 @@
 import { Directive, ElementRef, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ISort } from '../interfaces/ISort';
+import { IThColumn } from '../interfaces/IThColumn';
 
 @Directive({
   selector: '[appTableSort]'
 })
 export class TableSortDirective implements OnInit {
   @Output() sorted = new EventEmitter<ISort>();
-  @Input() columns: (string | null)[];
+  @Input() columns: IThColumn[];
 
   ascSort = false;
   iSorts: HTMLElement[] = [];
-  lastSortId = 0;
+  lastSortId: string | undefined = '';
 
   constructor(private table: ElementRef) { }
 
@@ -23,12 +24,14 @@ export class TableSortDirective implements OnInit {
     let ths = table.getElementsByTagName('th');
 
     for (let i = 0; i < ths.length; i++) {
-      if (!this.columns[i]) continue;
+      let currentColumn = this.columns.find(c => c.title == ths[i].textContent);
+      if (!currentColumn) continue;
+
       let iSort = document.createElement('i');
 
       iSort.classList.add('fa', 'fa-sort', 'btn');
-      iSort.addEventListener('click', () => this.sort(i));
-      iSort.id = `th-sort-${i}`;
+      iSort.addEventListener('click', () => this.sort(currentColumn?.key));
+      iSort.id = `th-sort-${currentColumn.key}`;
 
       this.iSorts.push(iSort);
 
@@ -36,7 +39,7 @@ export class TableSortDirective implements OnInit {
     };
   }
 
-  sort(id: number) {
+  sort(id: string | undefined) {
     if (this.lastSortId == id) this.ascSort = !this.ascSort;
     else this.ascSort = true;
     this.lastSortId = id;
@@ -56,7 +59,7 @@ export class TableSortDirective implements OnInit {
 
     });
 
-    let sort: ISort = { column: this.columns[id], direction: this.ascSort ? 'asc' : 'des' };
+    let sort: ISort = { column: id, direction: this.ascSort ? 'asc' : 'des' };
     this.sorted.emit(sort);
   }
 

@@ -6,6 +6,7 @@ import { LevelModalComponent } from 'src/app/components/modals/level-modal/level
 import { ILevel } from 'src/app/entities/ILevel';
 import { RequestInterceptor } from 'src/app/interceptor/request.interceptor';
 import { ISort } from 'src/app/interfaces/ISort';
+import { IThColumn } from 'src/app/interfaces/IThColumn';
 import { LevelsService } from 'src/app/services/levels/levels.service';
 import { environment } from 'src/environments/environment';
 
@@ -17,6 +18,11 @@ import { environment } from 'src/environments/environment';
 export class LevelsComponent implements OnInit {
 
   levels: ILevel[] = [];
+  columns: IThColumn[] = [
+    { title: 'Nível', key: 'nivel' },
+    { title: 'Quantidade de desenvolvedores', key: 'qtd' }
+  ];
+
   page = 1;
   collectionSize = 0;
   nameSearch = '';
@@ -70,11 +76,11 @@ export class LevelsComponent implements OnInit {
           await this.levelService.levelDelete(levelId);
           this.levelList(this.page);
           this.toastr.success("Registro excluído com sucesso!");
-        } catch (err:any) {
+        } catch (err: any) {
           console.error(err);
           if (err.error.devsQtd) {
             let { devsQtd } = err.error;
-            this.toastr.error(`Existe${devsQtd>1?'m':''} ${devsQtd} desenvolvedor${devsQtd>1?'es':''} nesse nível, portanto o nível não pode ser excluído!`);
+            this.toastr.error(`Existe${devsQtd > 1 ? 'm' : ''} ${devsQtd} desenvolvedor${devsQtd > 1 ? 'es' : ''} nesse nível, portanto o nível não pode ser excluído!`);
           }
           else this.toastr.error('Houve um problema na conexão com o servidor');
         }

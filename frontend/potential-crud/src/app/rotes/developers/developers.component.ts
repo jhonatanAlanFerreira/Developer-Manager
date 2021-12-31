@@ -6,6 +6,7 @@ import { DeveloperModalComponent } from 'src/app/components/modals/developer-mod
 import { IDeveloper } from 'src/app/entities/IDeveloper';
 import { RequestInterceptor } from 'src/app/interceptor/request.interceptor';
 import { ISort } from 'src/app/interfaces/ISort';
+import { IThColumn } from 'src/app/interfaces/IThColumn';
 import { DevelopersService } from 'src/app/services/developers/developers.service';
 import { environment } from 'src/environments/environment';
 
@@ -17,6 +18,15 @@ import { environment } from 'src/environments/environment';
 export class DevelopersComponent implements OnInit {
 
   developers: IDeveloper[] = [];
+  columns: IThColumn[] = [
+    { title: 'Nome', key: 'nome' },
+    { title: 'Sexo', key: 'sexo' },
+    { title: 'Hobby', key: 'hobby' },
+    { title: 'Idade', key: 'idade' },
+    { title: 'Data de Nascimento', key: 'datanascimento' },
+    { title: 'Nível', key: 'nivel' }
+  ];
+
   page = 1;
   collectionSize = 0;
   nameSearch = '';
@@ -39,7 +49,7 @@ export class DevelopersComponent implements OnInit {
       console.error(err);
       this.toastr.error('Houve um problema na conexão com o servidor');
     }
-  }     
+  }
 
   devInsert() {
     let modalRef = this.modalService.open(DeveloperModalComponent, { size: 'lg', centered: true });
