@@ -1,8 +1,8 @@
 <app-modal [backgroundColor]="backgroundColor" [title]="title">
-  <p>{{message}}</p>
+  <p id="message">{{message}}</p>
 
   <div class="btn-action">
-    <button *ngIf="!confirmOnly" class="btn btn-danger" (click)="close()">Cancelar</button>
-    <button class="btn btn-success" (click)="sendConfirm()">{{confirmBtnText}}</button>
+    <button id="btn-cancel" *ngIf="!confirmOnly" class="btn btn-danger" (click)="close()">Cancelar</button>
+    <button id="btn-confirm" class="btn btn-success" (click)="sendConfirm()">{{confirmBtnText}}</button>
   </div>
 </app-modal>
