@@ -15,11 +15,11 @@
     <label>*Data de Nascimento</label>
     <input type="date" class="form-control"
       [class.input-invalid]="sendInvalidCheck && !form.controls.datanascimento.valid" formControlName="datanascimento">
-    <label>Nível</label>
+    <label>*Nível</label>
     <div *ngIf="levelsLoading" class="spinner-border text-info levels-loading" role="status">
       <span class="sr-only">Loading...</span>
     </div>
-    <select *ngIf="!levelsLoading" class="form-control" [class.input-invalid]="sendInvalidCheck && !form.controls.nivel.valid"
+    <select id="levels-select" *ngIf="!levelsLoading" class="form-control" [class.input-invalid]="sendInvalidCheck && !form.controls.nivel.valid"
       formControlName="nivel">
       <option disabled value="">Selecione o nível...</option>
       <option *ngFor="let level of levels" [value]="level._id">{{level.nivel}}</option>
@@ -31,6 +31,6 @@
 
   <div class="btn-action">
     <button class="btn btn-danger" (click)="close()">Cancelar</button>
-    <button class="btn btn-success" (click)="sendSave()">Confirmar</button>
+    <button id="submit-button" class="btn btn-success" (click)="sendSave()">Confirmar</button>
   </div>
 </app-modal>
