@@ -23,13 +23,17 @@ Necessário ter Docker instalado.
 Execute o comando `docker-compose up -d` na pasta do projeto, vai demorar alguns minutos até o docker gerar o container, quando terminar o projeto vai estar executando na porta 3000, é só acessar http://localhost:3000.
 
 ## 🌟 Features 
-* Busca pelo nome do desenvolvedor.
+* Testes unitários.
+
+* Lazy loading, carrega apenas o módulo usado com base na rota. 
+
+* Busca pelo nome do desenvolvedor ou nível.
  
 * Ordenação pelo nome da coluna asc e desc.
 
 * Paginação.
 
-* Responsividade
+* Responsividade.
 
 ## 📋 Documentação da API
 
