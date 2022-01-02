@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const db = require("../db");
+const mongoose = require('mongoose');
 
 /* GET Retorna os níveis de acordo com o termo passado via querystring e paginação */
 router.get('/', async (req, res) => {
@@ -27,13 +28,17 @@ router.get('/', async (req, res) => {
 
         let aggregate = [
             { $addFields: { idString: { $toString: "$_id" } } },
+            { $project: { __v: 0 } },
             { $match: levelQuery },
             {
-                "$lookup": {
-                    "from": "developers",
-                    "localField": "idString",
-                    "foreignField": "nivel",
-                    "as": "developers"
+                $lookup: {
+                    from: "developers",
+                    localField: "idString",
+                    foreignField: "nivel",
+                    as: "developers",
+                    pipeline: [
+                        { $project: { __v: 0 } }
+                    ]
                 }
             },
             { $addFields: { qtd: { $size: "$developers" } } },
@@ -64,14 +69,19 @@ router.get('/', async (req, res) => {
 /* GET Retorna os dados de um nível. */
 router.get('/:id', async (req, res) => {
     const Levels = db.Mongoose.model('levels', db.LevelsSchema, 'levels');
-    const {
+    let {
         id
     } = req.params;
 
     try {
-        const level = await Levels.find({
-            _id: Object(id)
-        });
+
+        id = mongoose.Types.ObjectId(id);
+
+        const level = await Levels.aggregate([
+            { $match: { _id: id } },
+            { $project: { __v: 0 } }
+        ]);
+
 
         res.send(level);
     } catch (err) {
