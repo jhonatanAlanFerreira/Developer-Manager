@@ -54,7 +54,7 @@ export class DevelopersComponent implements OnInit {
   devInsert() {
     let modalRef = this.modalService.open(DeveloperModalComponent, { size: 'lg', centered: true });
     let modalComp: DeveloperModalComponent = modalRef.componentInstance;
-    modalComp.title = 'Adicionando desenvolvedor';
+    modalComp.title = 'Adicionando Desenvolvedor';
 
     modalComp.save.subscribe(async (developer: IDeveloper) => {
       try {

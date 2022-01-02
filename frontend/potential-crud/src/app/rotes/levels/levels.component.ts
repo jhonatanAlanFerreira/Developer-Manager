@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { ConfirmModalComponent } from 'src/app/components/modals/confirm-modal/confirm-modal.component';
@@ -28,9 +29,13 @@ export class LevelsComponent implements OnInit {
   nameSearch = '';
   sort: ISort | null = null;
 
-  constructor(private levelService: LevelsService, private modalService: NgbModal, private toastr: ToastrService) { }
+  constructor(private levelService: LevelsService, private modalService: NgbModal, private toastr: ToastrService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
+    let shouldInsert = this.route.snapshot.queryParamMap.get('insert');
+    if (shouldInsert) this.levelInsert();
+    this.router.navigate(['levels']);
+
     this.levelList(this.page);
   }
 
@@ -50,7 +55,7 @@ export class LevelsComponent implements OnInit {
   levelInsert() {
     let modalRef = this.modalService.open(LevelModalComponent, { size: 'lg', centered: true });
     let modalComp: LevelModalComponent = modalRef.componentInstance;
-    modalComp.title = 'Adicionando desenvolvedor';
+    modalComp.title = 'Adicionando Nível';
 
     modalComp.save.subscribe(async (level: ILevel) => {
       try {

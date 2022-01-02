@@ -1,9 +1,11 @@
 import { AfterContentInit, Component, EventEmitter, HostListener, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { Router } from '@angular/router';
+import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { IDeveloper } from 'src/app/entities/IDeveloper';
 import { ILevel } from 'src/app/entities/ILevel';
 import { LevelsService } from 'src/app/services/levels/levels.service';
+import { ConfirmModalComponent } from '../confirm-modal/confirm-modal.component';
 
 @Component({
   selector: 'app-developer-modal',
@@ -24,7 +26,7 @@ export class DeveloperModalComponent implements OnInit, AfterContentInit {
   levels: ILevel[];
   levelsLoading = false;
 
-  constructor(private fb: FormBuilder, private activeModal: NgbActiveModal, private levelsService: LevelsService) { }
+  constructor(private fb: FormBuilder, private activeModal: NgbActiveModal, private levelsService: LevelsService, private modalService: NgbModal, private router: Router) { }
 
   ngOnInit(): void {
     this.form = this.fb.group({
@@ -45,6 +47,15 @@ export class DeveloperModalComponent implements OnInit, AfterContentInit {
     let levels = await this.levelsService.levelListAll();
     this.levels = levels.docs;
     this.levelsLoading = false;
+    if (!this.levels.length) {
+      this.activeModal.close();
+      let modalRef = this.modalService.open(ConfirmModalComponent, { size: 'lg', centered: true });
+      let modalComp: ConfirmModalComponent = modalRef.componentInstance;
+      modalComp.backgroundColor = 'red';
+      modalComp.title = 'Atenção!';
+      modalComp.message = 'Parece que não há níveis cadastrados para inserir esse desenvolvedor. Deseja ir a tela de cadastro de níveis?';
+      modalComp.confirm.subscribe(_ => this.router.navigate(['levels'], {queryParams: {insert:true}}));
+    }
   }
 
   ngAfterContentInit() {
