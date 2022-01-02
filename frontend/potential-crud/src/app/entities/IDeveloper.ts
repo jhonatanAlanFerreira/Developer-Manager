@@ -4,6 +4,7 @@ export interface IDeveloper {
   sexo: string,
   idade: number,
   hobby: string,
-  datanascimento: Date,
-  nivel: {nivel:string, _id: string}
+  datanascimento: Date | string,
+  nivel: { nivel: string, _id: string },
+  nivelObjId?: string
 }
