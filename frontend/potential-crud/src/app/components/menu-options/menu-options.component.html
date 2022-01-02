@@ -1,4 +1,4 @@
-<div [class.hidden]="!service.sideBarOpen" class="menu-options">
+<div (mouseleave)="service.sideBarOpen = false" [class.hidden]="!service.sideBarOpen" class="menu-options">
     <div>
         <i (click)="service.sideBarOpen = false" class="fa fa-times-circle"></i>
         <br>

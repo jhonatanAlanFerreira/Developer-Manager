@@ -1,5 +1,5 @@
 <div class="row title-bar">
-    <i (click)="service.sideBarOpen = true" class="fa fa-bars menu-icon-bar"> Menu</i>
+    <i (click)="service.sideBarOpen = true" (mouseenter)="service.sideBarOpen = true" class="fa fa-bars menu-icon-bar"> Menu</i>
     <h2 class="m-0 title-small">Gerenciar <b>{{titleEntity}}</b></h2>
   <div>
     <a (click)="addClicked.emit()" class="btn btn-success btn-small"><i class="fa fa-plus-circle"></i>
