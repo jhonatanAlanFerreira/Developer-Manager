@@ -8,6 +8,7 @@ import { ModalComponent } from '../modal/modal.component';
 import { IDeveloper } from 'src/app/entities/IDeveloper';
 
 import { DeveloperModalComponent } from './developer-modal.component';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('DeveloperModalComponent', () => {
   let component: DeveloperModalComponent;
@@ -15,7 +16,7 @@ describe('DeveloperModalComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [FormsModule, ReactiveFormsModule],
+      imports: [FormsModule, ReactiveFormsModule, RouterTestingModule],
       providers: [FormBuilder, NgbActiveModal,
         { provide: LevelsService, useClass: LevelsServiceStub }
       ],

@@ -1,6 +1,7 @@
 import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
+import { RouterTestingModule } from '@angular/router/testing';
 import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrModule } from 'ngx-toastr';
 import { TitleBarComponent } from 'src/app/components/title-bar/title-bar.component';
@@ -19,7 +20,9 @@ describe('LevelsComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [LevelsComponent, TitleBarComponent, TableSortDirective],
-      imports: [ToastrModule.forRoot(), NgbPaginationModule, FormsModule],
+      imports: [ToastrModule.forRoot(), NgbPaginationModule, FormsModule, RouterTestingModule.withRoutes(
+        [{path:'levels', component: LevelsComponent}]
+      )],
       providers: [{
         provide: LevelsService, useClass: LevelsServiceStub
       }]
