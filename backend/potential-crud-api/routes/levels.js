@@ -37,7 +37,7 @@ router.get('/', async (req, res) => {
                     foreignField: "nivel",
                     as: "developers",
                     pipeline: [
-                        { $project: { __v: 0 } }
+                        { $project: { __v: 0, nivel: 0 } }
                     ]
                 }
             },
@@ -78,8 +78,20 @@ router.get('/:id', async (req, res) => {
         id = mongoose.Types.ObjectId(id);
 
         const level = await Levels.aggregate([
+            { $addFields: { idString: { $toString: "$_id" } } },
             { $match: { _id: id } },
-            { $project: { __v: 0 } }
+            { $project: { __v: 0 } },
+            {
+                $lookup: {
+                    from: "developers",
+                    localField: "idString",
+                    foreignField: "nivel",
+                    as: "developers",
+                    pipeline: [
+                        { $project: { __v: 0, nivel: 0 } }
+                    ]
+                }
+            }
         ]);
 
 
