@@ -37,7 +37,7 @@ Execute o comando `docker-compose up -d` na pasta do projeto, vai demorar alguns
 
 ## 📋 Documentação da API
 
-<<table>
+<table>
   <thead>
     <tr>
       <th>Rota</th>
