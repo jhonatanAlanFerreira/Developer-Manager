@@ -40,6 +40,8 @@ describe('DevelopersComponent', () => {
   });
 
   it('should show loading icon', () => {
+    RequestInterceptor.loading = false;
+    fixture.detectChanges();
     let loadingEl = fixture.debugElement.query(By.css('.loading-blur'));
     expect(loadingEl).toBeFalsy();
     RequestInterceptor.loading = true;

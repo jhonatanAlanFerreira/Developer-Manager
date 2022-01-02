@@ -72,7 +72,7 @@ export class DeveloperModalComponent implements OnInit, AfterContentInit {
       idade: developer.idade,
       datanascimento: developer.datanascimento,
       hobby: developer.hobby,
-      nivel: developer.nivel._id
+      nivel: developer.nivel?._id
     });
   }
 
