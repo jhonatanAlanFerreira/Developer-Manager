@@ -7,7 +7,7 @@ Demonstração online https://jhonatanferreira.me/developer-manager
   <br>
 </kbd>
 
-> Um crud para gerenciar cadastros de desenvolvedores e seus níveis feito com Angular no frontend, Node no backend, Mongo como banco de dados e docker na criação do container.
+> Um crud para gerenciar cadastros de desenvolvedores e seus níveis(Ex: Junior, Pleno, Senior) feito com Angular no frontend, Node no backend, Mongo como banco de dados e docker na criação do container.
 
 ### Ajustes e melhorias
 
