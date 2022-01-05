@@ -1,6 +1,6 @@
 <app-modal [title]="title">
     <form [formGroup]="form">
-      <label>*Nível</label>
+      <label>*Nível <span style="opacity: 0.5;">(Ex: Junior, Pleno)</span></label>
       <input [class.input-invalid]="sendInvalidCheck && !form.controls.nivel.valid" class="form-control" type="text"
         formControlName="nivel">
     </form>

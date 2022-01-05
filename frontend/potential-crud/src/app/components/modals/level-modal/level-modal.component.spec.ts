@@ -34,7 +34,7 @@ describe('LevelModalComponent', () => {
   it('should have a label', () => {
     const labels = fixture.debugElement.queryAll(By.css('label'));
     expect(labels.length).toBe(1);
-    expect(labels[0].nativeElement.textContent).toBe('*Nível');
+    expect(labels[0].nativeElement.textContent).toBe('*Nível (Ex: Junior, Pleno)');
   });
 
   it('should have a input', () => {
