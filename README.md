@@ -1,6 +1,6 @@
 # Developer Manager
 
-Demonstração online https://jhonatanferreira.me/developer-manager
+[comment]: <> (Demonstração online https://jhonatanferreira.me/developer-manager)
 
 <kbd>
   <img src="https://raw.githubusercontent.com/jhonatanAlanFerreira/potential-crud/master/screenshot/screenshot.png" alt="Screen Shot">
